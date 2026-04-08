@@ -1,0 +1,583 @@
+:root {
+  --bg: #f4ecdf;
+  --bg-accent: #f9f4eb;
+  --ink: #11263b;
+  --muted: #50606f;
+  --line: #183855;
+  --panel: rgba(255, 250, 242, 0.88);
+  --accent: #d4552d;
+  --accent-soft: #ee8d5a;
+  --accent-2: #efc24d;
+  --accent-3: #74b49b;
+  --shadow: 0 18px 50px rgba(17, 38, 59, 0.14);
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --radius-sm: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI Variable", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(239, 194, 77, 0.28), transparent 24%),
+    radial-gradient(circle at 85% 16%, rgba(212, 85, 45, 0.15), transparent 18%),
+    linear-gradient(180deg, #f7f0e5 0%, #efe6d7 100%);
+}
+
+body.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+body.js-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(17, 38, 59, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 38, 59, 0.03) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 92%);
+}
+
+.page-shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  border: 2px solid rgba(24, 56, 85, 0.15);
+  border-radius: 36px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 242, 0.92), rgba(246, 234, 216, 0.88)),
+    var(--bg-accent);
+  box-shadow: var(--shadow);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto -70px -80px auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(116, 180, 155, 0.38), transparent 68%);
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.54);
+  backdrop-filter: blur(12px);
+}
+
+.brand-mark {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.85fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.hero-copy,
+.hero-panel,
+.panel-card,
+.site-footer {
+  border: 2px solid rgba(24, 56, 85, 0.12);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  padding: 34px;
+}
+
+.eyebrow,
+.section-kicker,
+.card-label,
+.panel-label,
+.project-phase,
+.timeline-date,
+.metric-label {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.intro-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  margin: 0 0 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff7f1;
+  font-weight: 700;
+  transform: rotate(-3deg);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 8vw, 5.6rem);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 10px;
+}
+
+.hero-lead,
+.hero-summary,
+.section-body,
+.about-copy,
+.footer-copy,
+.focus-note,
+.project-description,
+.project-role,
+.timeline-body,
+.info-value,
+.skill-note {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.hero-lead {
+  max-width: 18em;
+  font-size: 1.3rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.hero-summary {
+  max-width: 42rem;
+  margin: 16px 0 26px;
+  font-size: 1.02rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primary-button,
+.secondary-button,
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button,
+.project-link {
+  background: var(--ink);
+  color: #fdf7ed;
+  box-shadow: 0 12px 24px rgba(17, 38, 59, 0.18);
+}
+
+.secondary-button {
+  border: 2px solid rgba(24, 56, 85, 0.14);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.project-link:hover {
+  transform: translateY(-2px);
+}
+
+.hero-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.76);
+  border: 2px solid rgba(24, 56, 85, 0.1);
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.metric-label {
+  margin-top: 10px;
+  color: var(--line);
+}
+
+.focus-block {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.58);
+  border: 2px dashed rgba(24, 56, 85, 0.16);
+}
+
+.focus-title {
+  margin: 0 0 14px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.2rem;
+}
+
+.pill-group,
+.project-tags,
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill,
+.project-tag,
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(17, 38, 59, 0.06);
+  border: 1px solid rgba(24, 56, 85, 0.1);
+  color: var(--line);
+  font-weight: 700;
+}
+
+.pill:nth-child(3n + 1),
+.skill-pill:nth-child(3n + 1) {
+  background: rgba(212, 85, 45, 0.12);
+}
+
+.pill:nth-child(3n + 2),
+.skill-pill:nth-child(3n + 2) {
+  background: rgba(239, 194, 77, 0.2);
+}
+
+.pill:nth-child(3n + 3),
+.skill-pill:nth-child(3n + 3) {
+  background: rgba(116, 180, 155, 0.18);
+}
+
+.section {
+  margin-top: 28px;
+  padding: 20px 4px;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.about-grid,
+.history-layout,
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.skills-layout {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.panel-card {
+  padding: 26px;
+}
+
+.info-list {
+  display: grid;
+  gap: 18px;
+}
+
+.info-item {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(24, 56, 85, 0.1);
+}
+
+.info-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.info-label {
+  margin-bottom: 6px;
+  color: var(--line);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.info-value {
+  margin: 0;
+}
+
+.featured-grid,
+.project-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.featured-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border: 2px solid rgba(24, 56, 85, 0.12);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 250, 242, 0.92));
+  box-shadow: var(--shadow);
+}
+
+.project-card.featured {
+  min-height: 100%;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 246, 0.98), rgba(247, 235, 219, 0.94));
+}
+
+.project-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent-2);
+  color: #59430b;
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+.project-title {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.project-role {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.video-frame,
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.video-frame {
+  border: 2px solid rgba(24, 56, 85, 0.08);
+  background: #000;
+}
+
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  text-align: center;
+  color: var(--muted);
+  background:
+    linear-gradient(135deg, rgba(17, 38, 59, 0.08), rgba(212, 85, 45, 0.12)),
+    #fff6ea;
+  border: 2px dashed rgba(24, 56, 85, 0.18);
+}
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 22px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(212, 85, 45, 0.12);
+}
+
+.timeline-title {
+  margin: 6px 0;
+  font-size: 1.08rem;
+}
+
+.timeline-body {
+  margin: 0;
+}
+
+.site-footer {
+  margin-top: 30px;
+  padding: 24px 28px;
+}
+
+.footer-title {
+  margin: 0 0 8px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.6rem;
+}
+
+code {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(17, 38, 59, 0.08);
+  font-family: "Consolas", "Courier New", monospace;
+}
+
+@media (max-width: 980px) {
+  .hero-layout,
+  .skills-layout,
+  .history-layout,
+  .about-grid,
+  .featured-grid,
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1200px);
+    padding-top: 10px;
+  }
+
+  .hero {
+    padding: 16px;
+    border-radius: 26px;
+  }
+
+  .hero-copy,
+  .hero-panel,
+  .panel-card,
+  .project-card,
+  .site-footer {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: clamp(2.6rem, 14vw, 4.2rem);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button,
+  .project-link {
+    width: 100%;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+}

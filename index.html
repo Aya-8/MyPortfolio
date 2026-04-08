@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Engineer Portfolio</title>
+  <meta
+    name="description"
+    content="ゲームエンジニア志望者向けの就職・インターン用ポートフォリオ。作品、スキル、学歴、展示歴を1ページで紹介します。"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-noise"></div>
+  <div class="page-shell">
+    <header class="hero" id="top">
+      <nav class="top-nav">
+        <a class="brand-mark" href="#top">Game Engineer Portfolio</a>
+        <div class="nav-links">
+          <a href="#about">Profile</a>
+          <a href="#featured">Works</a>
+          <a href="#skills">Skills</a>
+          <a href="#history">History</a>
+        </div>
+      </nav>
+
+      <div class="hero-layout">
+        <section class="hero-copy reveal">
+          <p class="eyebrow">FOR INTERNSHIP / CAREER ENTRY</p>
+          <p class="intro-chip">GAME ENGINEER</p>
+          <h1 id="profile-name">Your Name</h1>
+          <p class="hero-lead" id="profile-tagline"></p>
+          <p class="hero-summary" id="profile-summary"></p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#featured">注目作品を見る</a>
+            <a class="secondary-button" href="#history">展示・発表歴を見る</a>
+          </div>
+        </section>
+
+        <aside class="hero-panel reveal">
+          <p class="panel-label">Quick View</p>
+          <div class="metrics" id="hero-metrics"></div>
+          <div class="focus-block">
+            <p class="focus-title">強み</p>
+            <div class="pill-group" id="core-strengths"></div>
+          </div>
+          <div class="focus-block">
+            <p class="focus-title">公開前メモ</p>
+            <p class="focus-note">
+              氏名・所属・連絡先・YouTubeリンクは
+              <code>script.js</code> を編集するとまとめて反映されます。
+            </p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section class="section reveal" id="about">
+        <div class="section-heading">
+          <p class="section-kicker">Profile</p>
+          <h2>何をする人なのか</h2>
+        </div>
+        <div class="about-grid">
+          <article class="panel-card">
+            <p class="card-label">Introduction</p>
+            <p class="about-copy" id="about-copy"></p>
+          </article>
+          <article class="panel-card">
+            <p class="card-label">Basic Info</p>
+            <div class="info-list" id="basic-info"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="featured">
+        <div class="section-heading">
+          <p class="section-kicker">Featured Works</p>
+          <h2>注目作品</h2>
+          <p class="section-body">
+            特にアピールしたい作品を先頭にまとめています。YouTube の共有リンクを追加すると、下のカードに埋め込み表示されます。
+          </p>
+        </div>
+        <div class="featured-grid" id="featured-projects"></div>
+      </section>
+
+      <section class="section reveal" id="projects">
+        <div class="section-heading">
+          <p class="section-kicker">All Works</p>
+          <h2>作品一覧</h2>
+          <p class="section-body">
+            担当範囲が一目で伝わるように、役割ごとのタグをつけています。
+          </p>
+        </div>
+        <div class="project-grid" id="all-projects"></div>
+      </section>
+
+      <section class="section reveal" id="skills">
+        <div class="section-heading">
+          <p class="section-kicker">Skills</p>
+          <h2>言語・ツール</h2>
+        </div>
+        <div class="skills-layout">
+          <article class="panel-card">
+            <p class="card-label">Programming</p>
+            <div class="skill-list" id="primary-languages"></div>
+          </article>
+          <article class="panel-card">
+            <p class="card-label">Classroom Experience</p>
+            <div class="skill-list" id="classroom-languages"></div>
+          </article>
+          <article class="panel-card tools-card">
+            <p class="card-label">Applications</p>
+            <div class="skill-list" id="applications"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="history">
+        <div class="section-heading">
+          <p class="section-kicker">History</p>
+          <h2>学歴・展示歴</h2>
+        </div>
+        <div class="history-layout">
+          <article class="panel-card">
+            <p class="card-label">Education</p>
+            <div class="timeline" id="education-timeline"></div>
+          </article>
+          <article class="panel-card">
+            <p class="card-label">Events & Exhibitions</p>
+            <div class="timeline" id="event-timeline"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer reveal">
+      <p class="footer-title">Ready for Update</p>
+      <p class="footer-copy">
+        限定公開の YouTube 共有リンク、氏名、所属、GitHub、メールアドレスを追加すると、
+        応募用のポートフォリオとしてそのまま使える構成にしています。
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
