@@ -11,48 +11,29 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page-noise"></div>
   <div class="page-shell">
     <header class="hero" id="top">
       <nav class="top-nav">
-        <a class="brand-mark" href="#top">Game Engineer Portfolio</a>
+        <a class="brand-mark" href="#top">Portfolio</a>
         <div class="nav-links">
-          <a href="#about">Profile</a>
-          <a href="#featured">Works</a>
-          <a href="#skills">Skills</a>
+          <a href="#games">Games</a>
+          <a href="#models">3D Models</a>
+          <a href="#illustrations">Illustrations</a>
+          <a href="#hlsl">HLSL</a>
           <a href="#history">History</a>
         </div>
       </nav>
 
-      <div class="hero-layout">
-        <section class="hero-copy reveal">
-          <p class="eyebrow">FOR INTERNSHIP / CAREER ENTRY</p>
-          <p class="intro-chip">GAME ENGINEER</p>
-          <h1 id="profile-name">Your Name</h1>
-          <p class="hero-lead" id="profile-tagline"></p>
-          <p class="hero-summary" id="profile-summary"></p>
-          <div class="hero-actions">
-            <a class="primary-button" href="#featured">注目作品を見る</a>
-            <a class="secondary-button" href="#history">展示・発表歴を見る</a>
-          </div>
-        </section>
-
-        <aside class="hero-panel reveal">
-          <p class="panel-label">Quick View</p>
-          <div class="metrics" id="hero-metrics"></div>
-          <div class="focus-block">
-            <p class="focus-title">強み</p>
-            <div class="pill-group" id="core-strengths"></div>
-          </div>
-          <div class="focus-block">
-            <p class="focus-title">公開前メモ</p>
-            <p class="focus-note">
-              氏名・所属・連絡先・YouTubeリンクは
-              <code>script.js</code> を編集するとまとめて反映されます。
-            </p>
-          </div>
-        </aside>
-      </div>
+      <section class="hero-copy reveal">
+        <p class="eyebrow">GAME ENGINEER PORTFOLIO</p>
+        <h1 id="profile-name">Your Name</h1>
+        <p class="hero-lead" id="profile-tagline"></p>
+        <p class="hero-summary" id="profile-summary"></p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#games">ゲーム作品を見る</a>
+          <a class="secondary-button" href="#about">プロフィールを見る</a>
+        </div>
+      </section>
     </header>
 
     <main>
@@ -65,6 +46,7 @@
           <article class="panel-card">
             <p class="card-label">Introduction</p>
             <p class="about-copy" id="about-copy"></p>
+            <div class="pill-group" id="core-strengths"></div>
           </article>
           <article class="panel-card">
             <p class="card-label">Basic Info</p>
@@ -73,26 +55,53 @@
         </div>
       </section>
 
-      <section class="section reveal" id="featured">
+      <section class="section reveal" id="games">
         <div class="section-heading">
-          <p class="section-kicker">Featured Works</p>
-          <h2>注目作品</h2>
+          <p class="section-kicker">Games</p>
+          <h2>ゲーム</h2>
           <p class="section-body">
-            特にアピールしたい作品を先頭にまとめています。YouTube の共有リンクを追加すると、下のカードに埋め込み表示されます。
+            制作したゲーム作品をまとめています。YouTube の共有リンクを追加すると、プレイ動画が埋め込みで表示されます。
           </p>
         </div>
-        <div class="featured-grid" id="featured-projects"></div>
+        <div class="work-grid game-grid" id="games-grid"></div>
       </section>
 
-      <section class="section reveal" id="projects">
+      <section class="section reveal" id="models">
         <div class="section-heading">
-          <p class="section-kicker">All Works</p>
-          <h2>作品一覧</h2>
+          <p class="section-kicker">3D Models</p>
+          <h2>3Dモデル</h2>
           <p class="section-body">
-            担当範囲が一目で伝わるように、役割ごとのタグをつけています。
+            モデリングやステージ制作に関わった作品をまとめています。
           </p>
         </div>
-        <div class="project-grid" id="all-projects"></div>
+        <div class="work-grid" id="models-grid"></div>
+      </section>
+
+      <section class="section reveal" id="illustrations">
+        <div class="section-heading">
+          <p class="section-kicker">Illustrations</p>
+          <h2>イラスト</h2>
+          <p class="section-body">
+            グラフィック、イラスト制作を担当した作品です。
+          </p>
+        </div>
+        <div class="work-grid" id="illustrations-grid"></div>
+      </section>
+
+      <section class="section reveal" id="hlsl">
+        <div class="section-heading">
+          <p class="section-kicker">HLSL</p>
+          <h2>HLSL / Shader</h2>
+          <p class="section-body">
+            将来的に HLSL や Shader の制作物を掲載するためのセクションです。
+          </p>
+        </div>
+        <article class="panel-card future-card">
+          <p class="future-title">準備中</p>
+          <p class="future-copy">
+            HLSL の作品、シェーダー実験、ポストエフェクトの実装例などを今後追加できる構成にしています。
+          </p>
+        </article>
       </section>
 
       <section class="section reveal" id="skills">
@@ -135,10 +144,9 @@
     </main>
 
     <footer class="site-footer reveal">
-      <p class="footer-title">Ready for Update</p>
+      <p class="footer-title">Update Notes</p>
       <p class="footer-copy">
-        限定公開の YouTube 共有リンク、氏名、所属、GitHub、メールアドレスを追加すると、
-        応募用のポートフォリオとしてそのまま使える構成にしています。
+        氏名、所属、連絡先、YouTube リンクは <code>script.js</code> を編集すると反映されます。
       </p>
     </footer>
   </div>

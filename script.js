@@ -21,81 +21,81 @@ const projects = [
     phase: "1年",
     roles: ["グラフィッカ"],
     description: "1年生の時に参加した作品で、グラフィック制作を担当しました。",
-    featured: false,
+    categories: ["games", "illustrations"],
     youtube: "",
-    badge: "Work"
+    showVideo: true
   },
   {
     title: "お酒のゲーム",
     phase: "課プロ1年 夏",
     roles: ["モデリング"],
     description: "課プロ1年夏に制作した作品で、モデリングを担当しました。",
-    featured: false,
+    categories: ["games", "models"],
     youtube: "",
-    badge: "Work"
+    showVideo: true
   },
   {
     title: "会津大学の1年生に向けたワンボタンゲーム",
-    phase: "1年 / 注目作品",
+    phase: "1年",
     roles: ["グラフィック", "プログラミング"],
     description: "会津大学の1年生に向けたワンボタンゲームで、グラフィックとプログラミングを担当した作品です。",
-    featured: true,
+    categories: ["games", "illustrations"],
     youtube: "",
-    badge: "Featured"
+    showVideo: true
   },
   {
     title: "プルプルプリンのゲーム",
-    phase: "課プロ2年 夏 / 注目作品",
+    phase: "課プロ2年 夏",
     roles: ["企画", "プログラミング"],
     description: "課プロ2年夏に制作した作品で、企画とプログラミングを担当しました。",
-    featured: true,
+    categories: ["games"],
     youtube: "",
-    badge: "Featured"
+    showVideo: true
   },
   {
     title: "Access to your 5 Girls❤❤❤❤❤",
-    phase: "夏みんげ～ / 注目作品",
+    phase: "夏みんげ～",
     roles: ["担当詳細を追記予定"],
     description: "アピール作品として掲載。担当範囲や工夫した点を追記すると、面接時により伝わりやすくなります。",
-    featured: true,
+    categories: ["games"],
     youtube: "",
-    badge: "Featured"
+    showVideo: true
   },
   {
     title: "昔の労働体験ゲーム(煮塾ゲーム)",
-    phase: "課プロ2年 冬 / 注目作品",
+    phase: "課プロ2年 冬",
     roles: ["担当詳細を追記予定"],
     description: "課プロ2年冬の代表作として掲載。担当内容や制作背景を追記できるように余白を持たせています。",
-    featured: true,
+    categories: ["games"],
     youtube: "",
-    badge: "Featured"
+    showVideo: true
   },
   {
     title: "起き上がりこぼしゲーム",
     phase: "課プロ1年 冬",
     roles: ["モデリング", "イラスト", "ステージ作成"],
     description: "課プロ1年冬に制作した作品で、モデリング、イラスト、ステージ作成を担当しました。",
-    featured: false,
+    categories: ["games", "models", "illustrations"],
     youtube: "",
-    badge: "Work"
+    showVideo: true
   },
   {
     title: "すごろくゲーム",
     phase: "制作作品",
     roles: ["モデリング", "ミニゲーム制作"],
     description: "すごろくゲームで、モデリングとミニゲーム制作を担当しました。",
-    featured: false,
+    categories: ["games", "models"],
     youtube: "",
-    badge: "Work"
+    showVideo: true
   },
   {
     title: "チョコ旅",
     phase: "制作作品",
     roles: ["グラフィッカ"],
     description: "チョコ旅では、グラフィッカとしてビジュアル制作に関わりました。",
-    featured: false,
+    categories: ["games", "illustrations"],
     youtube: "",
-    badge: "Work"
+    showVideo: true
   }
 ];
 
@@ -161,22 +161,6 @@ function toEmbedUrl(url) {
   return "";
 }
 
-function createMetricCard(value, label) {
-  const wrapper = document.createElement("article");
-  wrapper.className = "metric-card";
-
-  const valueElement = document.createElement("div");
-  valueElement.className = "metric-value";
-  valueElement.textContent = value;
-
-  const labelElement = document.createElement("div");
-  labelElement.className = "metric-label";
-  labelElement.textContent = label;
-
-  wrapper.append(valueElement, labelElement);
-  return wrapper;
-}
-
 function createInfoItem(label, value) {
   const item = document.createElement("div");
   item.className = "info-item";
@@ -200,10 +184,14 @@ function createPill(text, className) {
   return pill;
 }
 
-function createVideoBlock(project) {
+function createVideoBlock(project, showPlaceholder = false) {
   const embedUrl = toEmbedUrl(project.youtube);
 
   if (!embedUrl) {
+    if (!showPlaceholder) {
+      return null;
+    }
+
     const placeholder = document.createElement("div");
     placeholder.className = "video-placeholder";
     placeholder.textContent = "YouTube の共有リンクを追加すると、ここにプレイ動画が表示されます。";
@@ -226,22 +214,14 @@ function createVideoBlock(project) {
   return frame;
 }
 
-function createProjectCard(project, featured = false) {
+function createProjectCard(project, options = {}) {
+  const { showVideo = false } = options;
   const card = document.createElement("article");
-  card.className = featured ? "project-card featured" : "project-card";
-
-  const head = document.createElement("div");
-  head.className = "project-head";
+  card.className = "work-card";
 
   const phase = document.createElement("p");
   phase.className = "project-phase";
   phase.textContent = project.phase;
-
-  const badge = document.createElement("span");
-  badge.className = "project-badge";
-  badge.textContent = project.badge;
-
-  head.append(phase, badge);
 
   const title = document.createElement("h3");
   title.className = "project-title";
@@ -261,9 +241,14 @@ function createProjectCard(project, featured = false) {
     tags.append(createPill(tag, "project-tag"));
   });
 
-  const video = createVideoBlock(project);
+  card.append(phase, title, role, description, tags);
 
-  card.append(head, title, role, description, tags, video);
+  if (showVideo) {
+    const video = createVideoBlock(project, true);
+    if (video) {
+      card.append(video);
+    }
+  }
 
   if (project.youtube) {
     const link = document.createElement("a");
@@ -315,14 +300,6 @@ function renderProfile() {
   document.getElementById("profile-summary").textContent = profile.summary;
   document.getElementById("about-copy").textContent = profile.about;
 
-  const metrics = document.getElementById("hero-metrics");
-  metrics.append(
-    createMetricCard(projects.length, "作品数"),
-    createMetricCard(projects.filter((project) => project.featured).length, "注目作品"),
-    createMetricCard(events.length, "展示歴"),
-    createMetricCard(skillGroups.applications.length, "主要ツール")
-  );
-
   const strengthContainer = document.getElementById("core-strengths");
   profile.strengths.forEach((strength) => {
     strengthContainer.append(createPill(strength, "pill"));
@@ -335,17 +312,25 @@ function renderProfile() {
 }
 
 function renderProjects() {
-  const featuredContainer = document.getElementById("featured-projects");
-  const allContainer = document.getElementById("all-projects");
-
-  projects
-    .filter((project) => project.featured)
-    .forEach((project) => {
-      featuredContainer.append(createProjectCard(project, true));
-    });
+  const containers = {
+    games: document.getElementById("games-grid"),
+    models: document.getElementById("models-grid"),
+    illustrations: document.getElementById("illustrations-grid")
+  };
 
   projects.forEach((project) => {
-    allContainer.append(createProjectCard(project));
+    project.categories.forEach((category) => {
+      const container = containers[category];
+      if (!container) {
+        return;
+      }
+
+      container.append(
+        createProjectCard(project, {
+          showVideo: category === "games"
+        })
+      );
+    });
   });
 }
 
