@@ -8,10 +8,10 @@ const profile = {
     "ゲームエンジニアとして、企画から実装、ビジュアル制作まで作品に必要な工程へ柔軟に関わってきました。プログラムだけでなく、モデルやイラスト、ステージ制作などにも対応できるため、ゲーム体験を総合的に形にできることをアピールポイントとしています。",
   strengths: ["プログラミング", "グラフィック", "モデリング", "企画", "Unity制作"],
   info: [
-    { label: "志望職種", value: "ゲームエンジニア" },
-    { label: "所属", value: "〇〇大学 / 学部・学科・学年を入力" },
+    { label: "Role", value: "ゲームエンジニア" },
+    { label: "School", value: "〇〇大学 / 学部・学科・学年を入力" },
     { label: "GitHub", value: "GitHub URL を追加" },
-    { label: "メール", value: "連絡先メールアドレスを追加" }
+    { label: "Email", value: "連絡先メールアドレスを追加" }
   ]
 };
 
@@ -168,9 +168,9 @@ const education = [
 ];
 
 const categoryLabels = {
-  games: "ゲーム",
-  models: "3Dモデル",
-  illustrations: "イラスト",
+  games: "Games",
+  models: "3D Models",
+  illustrations: "Illustration",
   hlsl: "HLSL"
 };
 
@@ -246,7 +246,7 @@ function createVideoBlock(project, showPlaceholder = false) {
 
     const placeholder = document.createElement("div");
     placeholder.className = "video-placeholder";
-    placeholder.textContent = "YouTube の共有リンクを追加すると、ここにプレイ動画が表示されます。";
+    placeholder.textContent = "Add a YouTube link to show the play video here.";
     return placeholder;
   }
 
@@ -328,12 +328,12 @@ function createProjectCard(project, options = {}) {
 
   const openText = document.createElement("span");
   openText.className = "work-open-text";
-  openText.textContent = "クリックで詳細を見る";
+  openText.textContent = "Open Details";
 
   meta.append(openText);
 
   if (project.playUrl) {
-    meta.append(createPill("遊べます", "work-status-pill"));
+    meta.append(createPill("Playable", "work-status-pill"));
   }
 
   trigger.append(thumbnail, meta);
@@ -454,7 +454,7 @@ function setupProjectModal() {
     lastTrigger = trigger;
     phase.textContent = project.phase;
     title.textContent = project.title;
-    role.textContent = `担当: ${project.roles.join(" / ")}`;
+    role.textContent = `Role: ${project.roles.join(" / ")}`;
     description.textContent = project.description;
 
     tags.replaceChildren();
@@ -463,10 +463,10 @@ function setupProjectModal() {
     });
 
     meta.replaceChildren(
-      createModalMetaItem("時期", project.phase),
-      createModalMetaItem("カテゴリ", project.categories.map((category) => categoryLabels[category]).join(" / ")),
-      createModalMetaItem("担当", project.roles.join(" / ")),
-      createModalMetaItem("公開", project.playUrl ? project.playPlatform || "外部公開" : "未設定")
+      createModalMetaItem("Period", project.phase),
+      createModalMetaItem("Category", project.categories.map((category) => categoryLabels[category]).join(" / ")),
+      createModalMetaItem("Role", project.roles.join(" / ")),
+      createModalMetaItem("Published", project.playUrl ? project.playPlatform || "External" : "Not Set")
     );
 
     media.replaceChildren();
@@ -505,7 +505,7 @@ function setupProjectModal() {
       link.href = project.youtube;
       link.target = "_blank";
       link.rel = "noreferrer";
-      link.textContent = "YouTube で見る";
+      link.textContent = "Watch Video";
       actions.append(link);
     }
 
