@@ -22,6 +22,8 @@ const projects = [
     roles: ["グラフィッカ"],
     description: "1年生の時に参加した作品で、グラフィック制作を担当しました。",
     categories: ["games", "illustrations"],
+    thumbnailImage: "",
+    thumbnailAlt: "なつみんげ～ のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -31,6 +33,8 @@ const projects = [
     roles: ["モデリング"],
     description: "課プロ1年夏に制作した作品で、モデリングを担当しました。",
     categories: ["games", "models"],
+    thumbnailImage: "",
+    thumbnailAlt: "お酒のゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -40,6 +44,8 @@ const projects = [
     roles: ["グラフィック", "プログラミング"],
     description: "会津大学の1年生に向けたワンボタンゲームで、グラフィックとプログラミングを担当した作品です。",
     categories: ["games", "illustrations"],
+    thumbnailImage: "",
+    thumbnailAlt: "会津大学の1年生に向けたワンボタンゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -49,6 +55,8 @@ const projects = [
     roles: ["企画", "プログラミング"],
     description: "課プロ2年夏に制作した作品で、企画とプログラミングを担当しました。",
     categories: ["games"],
+    thumbnailImage: "",
+    thumbnailAlt: "プルプルプリンのゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -58,6 +66,8 @@ const projects = [
     roles: ["担当詳細を追記予定"],
     description: "アピール作品として掲載。担当範囲や工夫した点を追記すると、面接時により伝わりやすくなります。",
     categories: ["games"],
+    thumbnailImage: "",
+    thumbnailAlt: "Access to your 5 Girls のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -67,6 +77,8 @@ const projects = [
     roles: ["担当詳細を追記予定"],
     description: "課プロ2年冬の代表作として掲載。担当内容や制作背景を追記できるように余白を持たせています。",
     categories: ["games"],
+    thumbnailImage: "",
+    thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -76,6 +88,8 @@ const projects = [
     roles: ["モデリング", "イラスト", "ステージ作成"],
     description: "課プロ1年冬に制作した作品で、モデリング、イラスト、ステージ作成を担当しました。",
     categories: ["games", "models", "illustrations"],
+    thumbnailImage: "",
+    thumbnailAlt: "起き上がりこぼしゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -85,6 +99,8 @@ const projects = [
     roles: ["モデリング", "ミニゲーム制作"],
     description: "すごろくゲームで、モデリングとミニゲーム制作を担当しました。",
     categories: ["games", "models"],
+    thumbnailImage: "",
+    thumbnailAlt: "すごろくゲーム のサムネイル",
     youtube: "",
     showVideo: true
   },
@@ -94,6 +110,8 @@ const projects = [
     roles: ["グラフィッカ"],
     description: "チョコ旅では、グラフィッカとしてビジュアル制作に関わりました。",
     categories: ["games", "illustrations"],
+    thumbnailImage: "",
+    thumbnailAlt: "チョコ旅 のサムネイル",
     youtube: "",
     showVideo: true
   }
@@ -221,6 +239,20 @@ function createVideoBlock(project, showPlaceholder = false) {
   return frame;
 }
 
+function createImageFrame(src, alt, frameClassName, imageClassName) {
+  const frame = document.createElement("div");
+  frame.className = frameClassName;
+
+  const image = document.createElement("img");
+  image.className = imageClassName;
+  image.src = src;
+  image.alt = alt;
+  image.loading = "lazy";
+
+  frame.append(image);
+  return frame;
+}
+
 function createProjectCard(project, options = {}) {
   const card = document.createElement("article");
   card.className = "work-card";
@@ -232,6 +264,22 @@ function createProjectCard(project, options = {}) {
 
   const thumbnail = document.createElement("div");
   thumbnail.className = "work-thumbnail";
+  const hasThumbnailImage = Boolean(project.thumbnailImage);
+
+  if (hasThumbnailImage) {
+    thumbnail.classList.add("has-image");
+    thumbnail.append(
+      createImageFrame(
+        project.thumbnailImage,
+        project.thumbnailAlt || `${project.title} のサムネイル`,
+        "thumbnail-image-frame",
+        "thumbnail-image"
+      )
+    );
+  }
+
+  const textLayer = document.createElement("div");
+  textLayer.className = "thumbnail-text";
 
   const phase = document.createElement("p");
   phase.className = "thumbnail-phase";
@@ -245,7 +293,8 @@ function createProjectCard(project, options = {}) {
   caption.className = "thumbnail-caption";
   caption.textContent = project.roles.join(" / ");
 
-  thumbnail.append(phase, title, caption);
+  textLayer.append(phase, title, caption);
+  thumbnail.append(textLayer);
 
   const meta = document.createElement("div");
   meta.className = "work-card-meta";
@@ -388,6 +437,17 @@ function setupProjectModal() {
     );
 
     media.replaceChildren();
+    if (project.thumbnailImage) {
+      media.append(
+        createImageFrame(
+          project.thumbnailImage,
+          project.thumbnailAlt || `${project.title} のサムネイル`,
+          "project-modal-image-frame",
+          "project-modal-image"
+        )
+      );
+    }
+
     if (project.showVideo) {
       const video = createVideoBlock(project, true);
       if (video) {
