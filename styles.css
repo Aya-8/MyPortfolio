@@ -1,12 +1,12 @@
 :root {
-  --bg: #f7f5f1;
-  --ink: #1b2430;
-  --muted: #65707e;
-  --line: #d8dde4;
+  --bg: #f3f7f2;
+  --ink: #1f2c24;
+  --muted: #637267;
+  --line: #d6e1d5;
   --panel: #ffffff;
-  --accent: #2f5d8c;
-  --accent-soft: #eaf0f6;
-  --shadow: 0 16px 34px rgba(27, 36, 48, 0.06);
+  --accent: #4f7a58;
+  --accent-soft: #edf5ee;
+  --shadow: 0 16px 34px rgba(31, 44, 36, 0.06);
   --radius-lg: 24px;
   --radius-md: 18px;
 }
@@ -222,7 +222,7 @@ h2 {
   padding: 0 12px;
   border-radius: 999px;
   background: var(--accent-soft);
-  border: 1px solid #d5dfeb;
+  border: 1px solid #d6e3d8;
   color: var(--accent);
   font-weight: 600;
 }
@@ -327,34 +327,34 @@ h2 {
   padding: 22px;
   border-bottom: 1px solid var(--line);
   background:
-    linear-gradient(140deg, #eef3f8 0%, #ffffff 50%, #f4f7fb 100%);
+    linear-gradient(140deg, #edf4ee 0%, #ffffff 50%, #f4f8f3 100%);
   transition: transform 0.2s ease;
 }
 
 .work-thumbnail.has-image {
   justify-content: flex-end;
-  background: #15202d;
+  background: #1f3426;
 }
 
 .work-card:nth-child(4n + 2) .work-thumbnail {
   background:
-    linear-gradient(140deg, #f3f5f8 0%, #ffffff 52%, #eef2f6 100%);
+    linear-gradient(140deg, #eef3ec 0%, #ffffff 52%, #edf5ef 100%);
 }
 
 .work-card:nth-child(4n + 3) .work-thumbnail {
   background:
-    linear-gradient(140deg, #f5f8f4 0%, #ffffff 52%, #eef4ef 100%);
+    linear-gradient(140deg, #f1f6ef 0%, #ffffff 52%, #eaf2ea 100%);
 }
 
 .work-card:nth-child(4n + 4) .work-thumbnail {
   background:
-    linear-gradient(140deg, #f8f4f2 0%, #ffffff 52%, #f6efeb 100%);
+    linear-gradient(140deg, #f3f6f0 0%, #ffffff 52%, #eef4ee 100%);
 }
 
 .work-card:nth-child(4n + 2) .work-thumbnail.has-image,
 .work-card:nth-child(4n + 3) .work-thumbnail.has-image,
 .work-card:nth-child(4n + 4) .work-thumbnail.has-image {
-  background: #15202d;
+  background: #1f3426;
 }
 
 .work-thumbnail.has-image .thumbnail-phase,
@@ -379,7 +379,7 @@ h2 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14, 22, 32, 0.08) 0%, rgba(14, 22, 32, 0.72) 100%);
+  background: linear-gradient(180deg, rgba(18, 31, 22, 0.08) 0%, rgba(18, 31, 22, 0.72) 100%);
 }
 
 .thumbnail-image {
@@ -471,8 +471,8 @@ h2 {
   padding: 18px;
   text-align: center;
   color: var(--muted);
-  background: #fafbfd;
-  border: 1px dashed #c7d1dc;
+  background: #f8fbf7;
+  border: 1px dashed #c8d7ca;
 }
 
 .timeline {
@@ -494,7 +494,7 @@ h2 {
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 5px rgba(47, 93, 140, 0.1);
+  box-shadow: 0 0 0 5px rgba(79, 122, 88, 0.12);
 }
 
 .timeline-title {
@@ -527,7 +527,7 @@ h2 {
 .project-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(27, 36, 48, 0.42);
+  background: rgba(31, 44, 36, 0.38);
 }
 
 .project-modal-panel {
@@ -538,7 +538,7 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 28px;
   background: var(--panel);
-  box-shadow: 0 28px 60px rgba(27, 36, 48, 0.22);
+  box-shadow: 0 28px 60px rgba(31, 44, 36, 0.18);
 }
 
 .project-modal-content {
@@ -583,7 +583,7 @@ h2 {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: #fafbfd;
+  background: #f8fbf7;
 }
 
 .project-modal-meta-label {
@@ -617,7 +617,7 @@ h2 {
   margin-bottom: 18px;
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: #f2f5f8;
+  background: #eef4ee;
 }
 
 .project-modal-image {
