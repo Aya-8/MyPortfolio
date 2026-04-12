@@ -122,6 +122,13 @@ const education = [
   { date: "2021", title: "私立●●高校 女子部 入学", body: "" }
 ];
 
+const categoryLabels = {
+  games: "ゲーム",
+  models: "3Dモデル",
+  illustrations: "イラスト",
+  hlsl: "HLSL"
+};
+
 const events = [
   { date: "2026/01", title: "ミニミニ博物館", body: "福島県立博物館" },
   { date: "2025/12", title: "コミックマーケット107", body: "自主制作ゲームを展示・頒布" },
@@ -215,51 +222,45 @@ function createVideoBlock(project, showPlaceholder = false) {
 }
 
 function createProjectCard(project, options = {}) {
-  const { showVideo = false } = options;
   const card = document.createElement("article");
   card.className = "work-card";
 
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = "work-trigger";
+  trigger.setAttribute("aria-haspopup", "dialog");
+
+  const thumbnail = document.createElement("div");
+  thumbnail.className = "work-thumbnail";
+
   const phase = document.createElement("p");
-  phase.className = "project-phase";
+  phase.className = "thumbnail-phase";
   phase.textContent = project.phase;
 
   const title = document.createElement("h3");
-  title.className = "project-title";
+  title.className = "thumbnail-title";
   title.textContent = project.title;
 
-  const role = document.createElement("p");
-  role.className = "project-role";
-  role.textContent = `担当: ${project.roles.join(" / ")}`;
+  const caption = document.createElement("p");
+  caption.className = "thumbnail-caption";
+  caption.textContent = project.roles.join(" / ");
 
-  const description = document.createElement("p");
-  description.className = "project-description";
-  description.textContent = project.description;
+  thumbnail.append(phase, title, caption);
 
-  const tags = document.createElement("div");
-  tags.className = "project-tags";
-  project.roles.forEach((tag) => {
-    tags.append(createPill(tag, "project-tag"));
+  const meta = document.createElement("div");
+  meta.className = "work-card-meta";
+
+  const openText = document.createElement("span");
+  openText.className = "work-open-text";
+  openText.textContent = "クリックで詳細を見る";
+
+  meta.append(openText);
+  trigger.append(thumbnail, meta);
+  trigger.addEventListener("click", () => {
+    openProjectModal(project, trigger);
   });
 
-  card.append(phase, title, role, description, tags);
-
-  if (showVideo) {
-    const video = createVideoBlock(project, true);
-    if (video) {
-      card.append(video);
-    }
-  }
-
-  if (project.youtube) {
-    const link = document.createElement("a");
-    link.className = "project-link";
-    link.href = project.youtube;
-    link.target = "_blank";
-    link.rel = "noreferrer";
-    link.textContent = "YouTube で見る";
-    card.append(link);
-  }
-
+  card.append(trigger);
   return card;
 }
 
@@ -325,13 +326,101 @@ function renderProjects() {
         return;
       }
 
-      container.append(
-        createProjectCard(project, {
-          showVideo: category === "games"
-        })
-      );
+      container.append(createProjectCard(project));
     });
   });
+}
+
+function createModalMetaItem(label, value) {
+  const item = document.createElement("div");
+  item.className = "project-modal-meta-item";
+
+  const labelElement = document.createElement("p");
+  labelElement.className = "project-modal-meta-label";
+  labelElement.textContent = label;
+
+  const valueElement = document.createElement("p");
+  valueElement.className = "project-modal-meta-value";
+  valueElement.textContent = value;
+
+  item.append(labelElement, valueElement);
+  return item;
+}
+
+function setupProjectModal() {
+  const modal = document.getElementById("project-modal");
+  const phase = document.getElementById("project-modal-phase");
+  const title = document.getElementById("project-modal-title");
+  const role = document.getElementById("project-modal-role");
+  const tags = document.getElementById("project-modal-tags");
+  const meta = document.getElementById("project-modal-meta");
+  const description = document.getElementById("project-modal-description");
+  const media = document.getElementById("project-modal-media");
+  const actions = document.getElementById("project-modal-actions");
+  let lastTrigger = null;
+
+  function closeProjectModal() {
+    modal.hidden = true;
+    document.body.classList.remove("modal-open");
+
+    if (lastTrigger) {
+      lastTrigger.focus();
+      lastTrigger = null;
+    }
+  }
+
+  function openProjectModal(project, trigger) {
+    lastTrigger = trigger;
+    phase.textContent = project.phase;
+    title.textContent = project.title;
+    role.textContent = `担当: ${project.roles.join(" / ")}`;
+    description.textContent = project.description;
+
+    tags.replaceChildren();
+    project.roles.forEach((tag) => {
+      tags.append(createPill(tag, "project-tag"));
+    });
+
+    meta.replaceChildren(
+      createModalMetaItem("時期", project.phase),
+      createModalMetaItem("カテゴリ", project.categories.map((category) => categoryLabels[category]).join(" / ")),
+      createModalMetaItem("担当", project.roles.join(" / "))
+    );
+
+    media.replaceChildren();
+    if (project.showVideo) {
+      const video = createVideoBlock(project, true);
+      if (video) {
+        media.append(video);
+      }
+    }
+
+    actions.replaceChildren();
+    if (project.youtube) {
+      const link = document.createElement("a");
+      link.className = "project-link";
+      link.href = project.youtube;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = "YouTube で見る";
+      actions.append(link);
+    }
+
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
+  }
+
+  document.querySelectorAll("[data-close-modal]").forEach((element) => {
+    element.addEventListener("click", closeProjectModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      closeProjectModal();
+    }
+  });
+
+  return openProjectModal;
 }
 
 function renderSkills() {
@@ -384,6 +473,8 @@ function setupReveal() {
     observer.observe(element);
   });
 }
+
+const openProjectModal = setupProjectModal();
 
 renderProfile();
 renderProjects();

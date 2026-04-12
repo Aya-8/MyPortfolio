@@ -28,6 +28,10 @@ body {
   background: var(--bg);
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 body.js-ready .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -279,14 +283,97 @@ h2 {
 }
 
 .work-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--panel);
   box-shadow: var(--shadow);
+}
+
+.work-trigger {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.work-trigger:hover .work-thumbnail,
+.work-trigger:focus-visible .work-thumbnail {
+  transform: translateY(-2px);
+}
+
+.work-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.work-thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 220px;
+  padding: 22px;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(140deg, #eef3f8 0%, #ffffff 50%, #f4f7fb 100%);
+  transition: transform 0.2s ease;
+}
+
+.work-card:nth-child(4n + 2) .work-thumbnail {
+  background:
+    linear-gradient(140deg, #f3f5f8 0%, #ffffff 52%, #eef2f6 100%);
+}
+
+.work-card:nth-child(4n + 3) .work-thumbnail {
+  background:
+    linear-gradient(140deg, #f5f8f4 0%, #ffffff 52%, #eef4ef 100%);
+}
+
+.work-card:nth-child(4n + 4) .work-thumbnail {
+  background:
+    linear-gradient(140deg, #f8f4f2 0%, #ffffff 52%, #f6efeb 100%);
+}
+
+.thumbnail-phase {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.thumbnail-title {
+  margin: 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(1.45rem, 2.6vw, 2rem);
+  line-height: 1.25;
+}
+
+.thumbnail-caption {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.work-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 22px 18px;
+}
+
+.work-open-text {
+  color: var(--accent);
+  font-size: 0.94rem;
+  font-weight: 600;
 }
 
 .project-title {
@@ -364,6 +451,114 @@ h2 {
   padding: 24px 28px;
 }
 
+.project-modal[hidden] {
+  display: none;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 36, 48, 0.42);
+}
+
+.project-modal-panel {
+  position: relative;
+  width: min(820px, 100%);
+  max-height: min(88vh, 920px);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: 0 28px 60px rgba(27, 36, 48, 0.22);
+}
+
+.project-modal-content {
+  padding: 32px;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.project-modal-title {
+  margin: 10px 0 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.project-modal-role {
+  margin-top: 12px;
+}
+
+.project-modal-tags {
+  margin-top: 18px;
+}
+
+.project-modal-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.project-modal-meta-item {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fafbfd;
+}
+
+.project-modal-meta-label {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-modal-meta-value {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.project-modal-description {
+  margin: 22px 0 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.project-modal-media {
+  margin-top: 22px;
+}
+
+.project-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
 .future-card {
   display: grid;
   gap: 8px;
@@ -420,9 +615,21 @@ code {
 
   .hero-copy,
   .panel-card,
-  .work-card,
   .site-footer {
     padding: 20px;
+  }
+
+  .work-card {
+    padding: 0;
+  }
+
+  .work-thumbnail {
+    min-height: 180px;
+    padding: 18px;
+  }
+
+  .work-card-meta {
+    padding: 14px 18px 18px;
   }
 
   h1 {
@@ -437,5 +644,17 @@ code {
   .secondary-button,
   .project-link {
     width: 100%;
+  }
+
+  .project-modal {
+    padding: 12px;
+  }
+
+  .project-modal-content {
+    padding: 22px;
+  }
+
+  .project-modal-meta {
+    grid-template-columns: 1fr;
   }
 }

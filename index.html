@@ -151,6 +151,30 @@
     </footer>
   </div>
 
+  <div class="project-modal" id="project-modal" hidden>
+    <div class="project-modal-backdrop" data-close-modal></div>
+    <div
+      class="project-modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+    >
+      <button class="project-modal-close" type="button" aria-label="閉じる" data-close-modal>
+        ×
+      </button>
+      <div class="project-modal-content">
+        <p class="project-phase" id="project-modal-phase"></p>
+        <h3 class="project-modal-title" id="project-modal-title"></h3>
+        <p class="project-role project-modal-role" id="project-modal-role"></p>
+        <div class="project-tags project-modal-tags" id="project-modal-tags"></div>
+        <div class="project-modal-meta" id="project-modal-meta"></div>
+        <p class="project-modal-description" id="project-modal-description"></p>
+        <div class="project-modal-media" id="project-modal-media"></div>
+        <div class="project-modal-actions" id="project-modal-actions"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
