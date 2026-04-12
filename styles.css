@@ -193,6 +193,12 @@ h2 {
   background: #ffffff;
 }
 
+.project-link-secondary {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: #ffffff;
+}
+
 .primary-button:hover,
 .secondary-button:hover,
 .project-link:hover {
@@ -426,6 +432,10 @@ h2 {
   font-weight: 600;
 }
 
+.work-status-pill {
+  margin-left: auto;
+}
+
 .project-title {
   font-size: clamp(1.3rem, 2.4vw, 1.7rem);
 }
@@ -564,7 +574,7 @@ h2 {
 
 .project-modal-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 22px;
 }

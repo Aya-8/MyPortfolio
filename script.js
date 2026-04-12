@@ -24,6 +24,9 @@ const projects = [
     categories: ["games", "illustrations"],
     thumbnailImage: "",
     thumbnailAlt: "なつみんげ～ のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -35,6 +38,9 @@ const projects = [
     categories: ["games", "models"],
     thumbnailImage: "",
     thumbnailAlt: "お酒のゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -46,6 +52,9 @@ const projects = [
     categories: ["games", "illustrations"],
     thumbnailImage: "",
     thumbnailAlt: "会津大学の1年生に向けたワンボタンゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -57,6 +66,9 @@ const projects = [
     categories: ["games"],
     thumbnailImage: "",
     thumbnailAlt: "プルプルプリンのゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -68,6 +80,9 @@ const projects = [
     categories: ["games"],
     thumbnailImage: "",
     thumbnailAlt: "Access to your 5 Girls のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -79,6 +94,9 @@ const projects = [
     categories: ["games"],
     thumbnailImage: "",
     thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -90,6 +108,9 @@ const projects = [
     categories: ["games", "models", "illustrations"],
     thumbnailImage: "",
     thumbnailAlt: "起き上がりこぼしゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -101,6 +122,9 @@ const projects = [
     categories: ["games", "models"],
     thumbnailImage: "",
     thumbnailAlt: "すごろくゲーム のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   },
@@ -112,6 +136,9 @@ const projects = [
     categories: ["games", "illustrations"],
     thumbnailImage: "",
     thumbnailAlt: "チョコ旅 のサムネイル",
+    playUrl: "",
+    playLabel: "Unityroomで遊ぶ",
+    playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
   }
@@ -304,6 +331,11 @@ function createProjectCard(project, options = {}) {
   openText.textContent = "クリックで詳細を見る";
 
   meta.append(openText);
+
+  if (project.playUrl) {
+    meta.append(createPill("遊べます", "work-status-pill"));
+  }
+
   trigger.append(thumbnail, meta);
   trigger.addEventListener("click", () => {
     openProjectModal(project, trigger);
@@ -433,7 +465,8 @@ function setupProjectModal() {
     meta.replaceChildren(
       createModalMetaItem("時期", project.phase),
       createModalMetaItem("カテゴリ", project.categories.map((category) => categoryLabels[category]).join(" / ")),
-      createModalMetaItem("担当", project.roles.join(" / "))
+      createModalMetaItem("担当", project.roles.join(" / ")),
+      createModalMetaItem("公開", project.playUrl ? project.playPlatform || "外部公開" : "未設定")
     );
 
     media.replaceChildren();
@@ -456,9 +489,19 @@ function setupProjectModal() {
     }
 
     actions.replaceChildren();
+    if (project.playUrl) {
+      const playLink = document.createElement("a");
+      playLink.className = "project-link";
+      playLink.href = project.playUrl;
+      playLink.target = "_blank";
+      playLink.rel = "noreferrer";
+      playLink.textContent = project.playLabel || "ブラウザで遊ぶ";
+      actions.append(playLink);
+    }
+
     if (project.youtube) {
       const link = document.createElement("a");
-      link.className = "project-link";
+      link.className = `project-link${project.playUrl ? " project-link-secondary" : ""}`;
       link.href = project.youtube;
       link.target = "_blank";
       link.rel = "noreferrer";
