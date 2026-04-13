@@ -16,11 +16,13 @@
       <nav class="top-nav">
         <a class="brand-mark" href="#top">GAME ENGINEER / PORTFOLIO</a>
         <div class="nav-links">
-          <a href="#games">Games</a>
-          <a href="#models">3D Models</a>
-          <a href="#illustrations">Illustration</a>
-          <a href="#hlsl">HLSL</a>
-          <a href="#history">History</a>
+          <a class="section-nav-link" href="#about" data-section-link="about">About</a>
+          <a class="section-nav-link" href="#games" data-section-link="games">Games</a>
+          <a class="section-nav-link" href="#models" data-section-link="models">3D</a>
+          <a class="section-nav-link" href="#illustrations" data-section-link="illustrations">Art</a>
+          <a class="section-nav-link" href="#hlsl" data-section-link="hlsl">HLSL</a>
+          <a class="section-nav-link" href="#skills" data-section-link="skills">Skills</a>
+          <a class="section-nav-link" href="#history" data-section-link="history">History</a>
         </div>
       </nav>
 
@@ -149,6 +151,33 @@
         氏名、所属、連絡先、YouTube リンクは <code>script.js</code> を編集すると反映されます。
       </p>
     </footer>
+  </div>
+
+  <button
+    class="index-menu-toggle"
+    id="index-menu-toggle"
+    type="button"
+    aria-label="Open section menu"
+    aria-expanded="false"
+    aria-controls="index-menu-layer"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="index-menu-layer" id="index-menu-layer" hidden>
+    <button class="index-menu-backdrop" type="button" aria-label="Close section menu" data-close-index></button>
+    <nav class="index-menu-panel" aria-label="Section Index">
+      <p class="index-menu-title">INDEX</p>
+      <a class="index-menu-link" href="#about" data-section-link="about" data-index-link>About</a>
+      <a class="index-menu-link" href="#games" data-section-link="games" data-index-link>Games</a>
+      <a class="index-menu-link" href="#models" data-section-link="models" data-index-link>3D Models</a>
+      <a class="index-menu-link" href="#illustrations" data-section-link="illustrations" data-index-link>Illustration</a>
+      <a class="index-menu-link" href="#hlsl" data-section-link="hlsl" data-index-link>HLSL</a>
+      <a class="index-menu-link" href="#skills" data-section-link="skills" data-index-link>Skills</a>
+      <a class="index-menu-link" href="#history" data-section-link="history" data-index-link>History</a>
+    </nav>
   </div>
 
   <div class="project-modal" id="project-modal" hidden>

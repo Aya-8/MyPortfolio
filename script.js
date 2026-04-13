@@ -25,21 +25,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "なつみんげ～ のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
-    playPlatform: "Unityroom",
-    youtube: "",
-    showVideo: true
-  },
-  {
-    title: "お酒のゲーム",
-    phase: "課プロ1年 夏",
-    roles: ["モデリング"],
-    description: "課プロ1年夏に制作した作品で、モデリングを担当しました。",
-    categories: ["games", "models"],
-    thumbnailImage: "",
-    thumbnailAlt: "お酒のゲーム のサムネイル",
-    playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -53,7 +39,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "会津大学の1年生に向けたワンボタンゲーム のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -67,7 +53,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "プルプルプリンのゲーム のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -81,7 +67,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "Access to your 5 Girls のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -95,7 +81,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -109,7 +95,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "起き上がりこぼしゲーム のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -123,7 +109,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "すごろくゲーム のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -137,7 +123,7 @@ const projects = [
     thumbnailImage: "",
     thumbnailAlt: "チョコ旅 のサムネイル",
     playUrl: "",
-    playLabel: "Unityroomで遊ぶ",
+    playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
     showVideo: true
@@ -146,8 +132,8 @@ const projects = [
 
 const skillGroups = {
   primaryLanguages: [
-    { name: "C", note: "2年" },
-    { name: "C#", note: "2年" }
+    { name: "C", note: "2Y" },
+    { name: "C#", note: "2Y" }
   ],
   classroomLanguages: [
     { name: "Java", note: "授業で使用" },
@@ -155,10 +141,10 @@ const skillGroups = {
     { name: "CSS", note: "授業で使用" }
   ],
   applications: [
-    { name: "Unity", note: "2年" },
-    { name: "Blender", note: "2年" },
-    { name: "Procreate", note: "4年" },
-    { name: "GitHub", note: "2年" }
+    { name: "Unity", note: "2Y" },
+    { name: "Blender", note: "2Y" },
+    { name: "Procreate", note: "4Y" },
+    { name: "GitHub", note: "2Y" }
   ]
 };
 
@@ -293,6 +279,11 @@ function createProjectCard(project, options = {}) {
   thumbnail.className = "work-thumbnail";
   const hasThumbnailImage = Boolean(project.thumbnailImage);
 
+  const periodBadge = document.createElement("span");
+  periodBadge.className = "thumbnail-period";
+  periodBadge.textContent = project.phase;
+  thumbnail.append(periodBadge);
+
   if (hasThumbnailImage) {
     thumbnail.classList.add("has-image");
     thumbnail.append(
@@ -308,10 +299,6 @@ function createProjectCard(project, options = {}) {
   const textLayer = document.createElement("div");
   textLayer.className = "thumbnail-text";
 
-  const phase = document.createElement("p");
-  phase.className = "thumbnail-phase";
-  phase.textContent = project.phase;
-
   const title = document.createElement("h3");
   title.className = "thumbnail-title";
   title.textContent = project.title;
@@ -320,7 +307,7 @@ function createProjectCard(project, options = {}) {
   caption.className = "thumbnail-caption";
   caption.textContent = project.roles.join(" / ");
 
-  textLayer.append(phase, title, caption);
+  textLayer.append(title, caption);
   thumbnail.append(textLayer);
 
   const meta = document.createElement("div");
@@ -495,7 +482,7 @@ function setupProjectModal() {
       playLink.href = project.playUrl;
       playLink.target = "_blank";
       playLink.rel = "noreferrer";
-      playLink.textContent = project.playLabel || "ブラウザで遊ぶ";
+      playLink.textContent = project.playLabel || "Play Game";
       actions.append(playLink);
     }
 
@@ -577,6 +564,81 @@ function setupReveal() {
   });
 }
 
+function setupSectionNavigation() {
+  const sectionIds = ["about", "games", "models", "illustrations", "hlsl", "skills", "history"];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+  const links = Array.from(document.querySelectorAll("[data-section-link]"));
+
+  function setActiveSection(activeId) {
+    links.forEach((link) => {
+      const isActive = link.dataset.sectionLink === activeId;
+      link.classList.toggle("is-active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+
+  function updateActiveSection() {
+    const offset = 180;
+    let activeId = sectionIds[0];
+
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= offset) {
+        activeId = section.id;
+      }
+    });
+
+    setActiveSection(activeId);
+  }
+
+  window.addEventListener("scroll", updateActiveSection, { passive: true });
+  window.addEventListener("resize", updateActiveSection);
+  updateActiveSection();
+}
+
+function setupIndexMenu() {
+  const toggle = document.getElementById("index-menu-toggle");
+  const layer = document.getElementById("index-menu-layer");
+
+  if (!toggle || !layer) {
+    return;
+  }
+
+  function setMenuOpen(isOpen) {
+    layer.hidden = !isOpen;
+    document.body.classList.toggle("index-menu-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  toggle.addEventListener("click", () => {
+    setMenuOpen(layer.hidden);
+  });
+
+  layer.querySelectorAll("[data-close-index]").forEach((element) => {
+    element.addEventListener("click", () => {
+      setMenuOpen(false);
+    });
+  });
+
+  layer.querySelectorAll("[data-index-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      setMenuOpen(false);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !layer.hidden) {
+      setMenuOpen(false);
+    }
+  });
+}
+
 const openProjectModal = setupProjectModal();
 
 renderProfile();
@@ -584,3 +646,5 @@ renderProjects();
 renderSkills();
 renderHistory();
 setupReveal();
+setupSectionNavigation();
+setupIndexMenu();
