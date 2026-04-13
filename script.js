@@ -136,9 +136,9 @@ const skillGroups = {
     { name: "C#", note: "2Y" }
   ],
   classroomLanguages: [
-    { name: "Java", note: "授業で使用" },
-    { name: "HTML", note: "授業で使用" },
-    { name: "CSS", note: "授業で使用" }
+    { name: "Java" },
+    { name: "HTML" },
+    { name: "CSS" }
   ],
   applications: [
     { name: "Unity", note: "2Y" },
@@ -359,7 +359,7 @@ function createTimelineItem(entry) {
 function createSkillPill(entry) {
   const wrapper = document.createElement("div");
   wrapper.className = "skill-pill";
-  wrapper.textContent = `${entry.name} / ${entry.note}`;
+  wrapper.textContent = entry.note ? `${entry.name} / ${entry.note}` : entry.name;
   return wrapper;
 }
 
