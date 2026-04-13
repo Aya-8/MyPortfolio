@@ -98,7 +98,7 @@ body.js-ready .reveal.is-visible {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  padding: 0 12px 4px;
+  padding: 0 12px;
   border: 1px solid transparent;
   border-radius: 6px;
   color: var(--ink);
@@ -109,26 +109,11 @@ body.js-ready .reveal.is-visible {
   text-transform: uppercase;
 }
 
-.section-nav-link::after {
-  content: "";
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 2px;
-  height: 1px;
-  background: rgba(245, 247, 251, 0.45);
-}
-
 .section-nav-link.is-active {
   border-color: rgba(71, 255, 139, 0.55);
   background: rgba(71, 255, 139, 0.1);
   color: var(--accent-green);
   box-shadow: inset 0 0 0 1px rgba(71, 255, 139, 0.1);
-}
-
-.section-nav-link.is-active::after {
-  background: var(--accent-green);
-  height: 2px;
 }
 
 .hero-copy,
