@@ -97,8 +97,8 @@ body.js-ready .reveal.is-visible {
   position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 0 10px;
+  min-height: 40px;
+  padding: 0 12px 4px;
   border: 1px solid transparent;
   border-radius: 6px;
   color: var(--ink);
@@ -112,9 +112,9 @@ body.js-ready .reveal.is-visible {
 .section-nav-link::after {
   content: "";
   position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 6px;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
   height: 1px;
   background: rgba(245, 247, 251, 0.45);
 }

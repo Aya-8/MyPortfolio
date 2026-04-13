@@ -566,12 +566,10 @@ function setupReveal() {
 
 function setupSectionNavigation() {
   const sectionIds = ["about", "games", "models", "illustrations", "hlsl", "skills", "history"];
-  const sections = sectionIds
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
   const links = Array.from(document.querySelectorAll("[data-section-link]"));
+  const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 
-  function setActiveSection(activeId) {
+  function setActiveSection(activeId = "") {
     links.forEach((link) => {
       const isActive = link.dataset.sectionLink === activeId;
       link.classList.toggle("is-active", isActive);
@@ -584,22 +582,33 @@ function setupSectionNavigation() {
     });
   }
 
-  function updateActiveSection() {
-    const offset = 180;
-    let activeId = sectionIds[0];
+  anchorLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const targetId = link.getAttribute("href")?.replace("#", "") || "";
 
-    sections.forEach((section) => {
-      if (section.getBoundingClientRect().top <= offset) {
-        activeId = section.id;
+      if (sectionIds.includes(targetId)) {
+        setActiveSection(targetId);
       }
     });
+  });
 
-    setActiveSection(activeId);
+  window.addEventListener("hashchange", () => {
+    const hashId = window.location.hash.replace("#", "");
+
+    if (sectionIds.includes(hashId)) {
+      setActiveSection(hashId);
+      return;
+    }
+
+    setActiveSection("");
+  });
+
+  const initialHash = window.location.hash.replace("#", "");
+  if (sectionIds.includes(initialHash)) {
+    setActiveSection(initialHash);
+  } else {
+    setActiveSection("");
   }
-
-  window.addEventListener("scroll", updateActiveSection, { passive: true });
-  window.addEventListener("resize", updateActiveSection);
-  updateActiveSection();
 }
 
 function setupIndexMenu() {
