@@ -55,7 +55,7 @@ const projects = [
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "",
+    youtube: "https://youtu.be/0Z_bYCMmzVI",
     showVideo: true
   },
   {
