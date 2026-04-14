@@ -31,17 +31,17 @@ const projects = [
     showVideo: true
   },
   {
-    title: "会津大学の1年生に向けたワンボタンゲーム",
+    title: "所持金ギリギリまで食べるぞ学食ゲーム",
     phase: "1年",
     roles: ["グラフィック", "プログラミング"],
     description: "会津大学の1年生に向けたワンボタンゲームで、グラフィックとプログラミングを担当した作品です。",
     categories: ["games"],
     thumbnailImage: "",
-    thumbnailAlt: "会津大学の1年生に向けたワンボタンゲーム のサムネイル",
+    thumbnailAlt: "所持金ギリギリまで食べるぞ学食ゲーム のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "",
+    youtube: "https://youtu.be/G-47K8UxpC8",
     showVideo: true
   },
   {
@@ -456,16 +456,6 @@ function setupProjectModal() {
     );
 
     media.replaceChildren();
-    if (project.thumbnailImage) {
-      media.append(
-        createImageFrame(
-          project.thumbnailImage,
-          project.thumbnailAlt || `${project.title} のサムネイル`,
-          "project-modal-image-frame",
-          "project-modal-image"
-        )
-      );
-    }
 
     if (project.showVideo) {
       const video = createVideoBlock(project, true);
