@@ -45,13 +45,13 @@ const projects = [
     showVideo: true
   },
   {
-    title: "プルプルプリンのゲーム",
+    title: "プルプルプリン",
     phase: "課プロ2年 夏",
     roles: ["企画", "プログラミング"],
     description: "課プロ2年夏に制作した作品で、企画とプログラミングを担当しました。",
     categories: ["games"],
-    thumbnailImage: "",
-    thumbnailAlt: "プルプルプリンのゲーム のサムネイル",
+    thumbnailImage: "assets/thumbnails/purupuru-purin-play.png",
+    thumbnailAlt: "プルプルプリン のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
@@ -155,9 +155,8 @@ const education = [
 
 const categoryLabels = {
   games: "Games",
-  models: "3D Models",
-  illustrations: "Illustration",
-  hlsl: "HLSL"
+  models: "3DCG",
+  illustrations: "Illustration"
 };
 
 const events = [
@@ -565,7 +564,7 @@ function setupReveal() {
 }
 
 function setupSectionNavigation() {
-  const sectionIds = ["about", "games", "models", "illustrations", "hlsl", "skills", "history"];
+  const sectionIds = ["about", "games", "models", "skills", "history", "illustrations"];
   const links = Array.from(document.querySelectorAll("[data-section-link]"));
   const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 
