@@ -120,7 +120,7 @@ const projects = [
     roles: ["グラフィッカ"],
     description: "チョコ旅では、グラフィッカとしてビジュアル制作に関わりました。",
     categories: ["games"],
-    thumbnailImage: "",
+    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
     thumbnailAlt: "チョコ旅 のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
