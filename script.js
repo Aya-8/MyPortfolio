@@ -75,14 +75,24 @@ const projects = [
     title: "Access to your 5 Girls❤❤❤❤❤",
     phase: "夏みんげ～",
     roles: ["担当詳細を追記予定"],
-    description: "アピール作品として掲載。担当範囲や工夫した点を追記すると、面接時により伝わりやすくなります。",
+    description: "会津大学公認サークル企画開発部（PandD）で制作したゲームです。サークルサイトで公開されている『PandD 2025 Winter』の収録作品として掲載しています。",
     categories: ["games"],
-    thumbnailImage: "",
+    thumbnailImage: "assets/thumbnails/access-5girls-thumbnail.png",
     thumbnailAlt: "Access to your 5 Girls のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "",
+    youtube: "https://youtu.be/4JdJ72pae7A",
+    detailLinks: [
+      {
+        label: "PandD Website",
+        url: "https://pandd.sakura.ne.jp/"
+      },
+      {
+        label: "PandD 2025 Winter",
+        url: "https://pandd.sakura.ne.jp/game.html"
+      }
+    ],
     showVideo: true
   },
   {
