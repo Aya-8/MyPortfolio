@@ -56,6 +56,19 @@ const projects = [
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "https://youtu.be/0Z_bYCMmzVI",
+    detailImages: [
+      {
+        src: "assets/details/purupuru-purin-controller.jpg",
+        alt: "プルプルプリンのオリジナルコントローラー接続写真",
+        caption: "Original controller setup"
+      }
+    ],
+    detailLinks: [
+      {
+        label: "Original Controller Video",
+        url: "https://youtu.be/NRYm6qiJPUg"
+      }
+    ],
     showVideo: true
   },
   {
@@ -265,6 +278,39 @@ function createImageFrame(src, alt, frameClassName, imageClassName) {
   return frame;
 }
 
+function createProjectActionLink(url, label, secondary = false) {
+  const link = document.createElement("a");
+  link.className = `project-link${secondary ? " project-link-secondary" : ""}`;
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.textContent = label;
+  return link;
+}
+
+function createDetailImageBlock(image) {
+  const figure = document.createElement("figure");
+  figure.className = "project-modal-figure";
+
+  figure.append(
+    createImageFrame(
+      image.src,
+      image.alt,
+      "project-modal-image-frame",
+      "project-modal-image"
+    )
+  );
+
+  if (image.caption) {
+    const caption = document.createElement("figcaption");
+    caption.className = "project-modal-image-caption";
+    caption.textContent = image.caption;
+    figure.append(caption);
+  }
+
+  return figure;
+}
+
 function createProjectCard(project, options = {}) {
   const card = document.createElement("article");
   card.className = "work-card";
@@ -464,26 +510,22 @@ function setupProjectModal() {
       }
     }
 
+    (project.detailImages || []).forEach((image) => {
+      media.append(createDetailImageBlock(image));
+    });
+
     actions.replaceChildren();
     if (project.playUrl) {
-      const playLink = document.createElement("a");
-      playLink.className = "project-link";
-      playLink.href = project.playUrl;
-      playLink.target = "_blank";
-      playLink.rel = "noreferrer";
-      playLink.textContent = project.playLabel || "Play Game";
-      actions.append(playLink);
+      actions.append(createProjectActionLink(project.playUrl, project.playLabel || "Play Game"));
     }
 
     if (project.youtube) {
-      const link = document.createElement("a");
-      link.className = `project-link${project.playUrl ? " project-link-secondary" : ""}`;
-      link.href = project.youtube;
-      link.target = "_blank";
-      link.rel = "noreferrer";
-      link.textContent = "Watch Video";
-      actions.append(link);
+      actions.append(createProjectActionLink(project.youtube, "Watch Video", Boolean(project.playUrl)));
     }
+
+    (project.detailLinks || []).forEach((link) => {
+      actions.append(createProjectActionLink(link.url, link.label, true));
+    });
 
     modal.hidden = false;
     document.body.classList.add("modal-open");

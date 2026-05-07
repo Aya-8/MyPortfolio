@@ -789,11 +789,18 @@ h2 {
 
 .project-modal-media {
   margin-top: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.project-modal-figure {
+  display: grid;
+  gap: 10px;
+  margin: 0;
 }
 
 .project-modal-image-frame {
   overflow: hidden;
-  margin-bottom: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #0a0d11;
@@ -804,6 +811,13 @@ h2 {
   width: 100%;
   max-height: 420px;
   object-fit: cover;
+}
+
+.project-modal-image-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }
 
 .project-modal-actions {
