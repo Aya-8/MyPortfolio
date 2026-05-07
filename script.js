@@ -91,7 +91,7 @@ const projects = [
     roles: ["担当詳細を追記予定"],
     description: "課プロ2年冬の代表作として掲載。担当内容や制作背景を追記できるように余白を持たせています。",
     categories: ["games"],
-    thumbnailImage: "",
+    thumbnailImage: "assets/thumbnails/old-craft-thumbnail.png",
     thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
