@@ -97,6 +97,13 @@ const projects = [
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
     youtube: "",
+    detailImages: [
+      {
+        src: "assets/details/old-craft-controller.jpg",
+        alt: "昔の労働体験ゲームのオリジナルコントローラー操作写真",
+        caption: "Original controller setup"
+      }
+    ],
     showVideo: true
   },
   {
