@@ -19,8 +19,8 @@ const projects = [
   {
     title: "なつみんげ～",
     phase: "1年",
-    roles: ["グラフィッカ"],
-    description: "1年生の時に参加した作品で、グラフィック制作を担当しました。",
+    roles: ["イラスト"],
+    description: "1年生の時に参加した作品で、イラスト制作を担当しました。",
     categories: ["games"],
     thumbnailImage: "",
     thumbnailAlt: "なつみんげ～ のサムネイル",
@@ -33,8 +33,9 @@ const projects = [
   {
     title: "所持金ギリギリまで食べるぞ学食ゲーム",
     phase: "1年",
-    roles: ["グラフィック", "プログラミング"],
-    description: "会津大学の1年生に向けたワンボタンゲームで、グラフィックとプログラミングを担当した作品です。",
+    roles: ["企画", "イラスト", "プログラミング"],
+    description:
+      "会津大学に新しく入学する1年生に向けて制作した、ワンボタンで遊べるゲームです。実際に会津大学の学食で食べられる食事を登場させ、値段も実際の学食に近い設定にしました。気軽に遊べる操作性を意識し、企画からプログラミング、イラストまで一人で制作しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/gakushoku-thumbnail.png",
     thumbnailAlt: "所持金ギリギリまで食べるぞ学食ゲーム のサムネイル",
@@ -77,8 +78,10 @@ const projects = [
   {
     title: "Access to your 5 Girls❤❤❤❤❤",
     phase: "夏みんげ～",
-    roles: ["担当詳細を追記予定"],
-    description: "会津大学公認サークル企画開発部（PandD）で制作したゲームです。サークルサイトで公開されている『PandD 2025 Winter』の収録作品として掲載しています。",
+    roles: ["プログラミング"],
+    description:
+      "2025年の夏に、会津大学公認サークル企画開発部（PandD）の7人チームで制作したゲームです。ヒロインが5人いる恋愛シミュレーションノベルゲームで、複数の女の子たちと並列して連絡を取りながら、デートや交際を進めていきます。" +
+      "序盤の、さまざまな女の子たちと仲良くなっていく恋愛シミュレーションらしいワクワク感から、次第に彼女たちが抱える葛藤や秘密が明らかになっていく展開へ移っていく点が魅力です。Player の選択によって彼女たちの運命が決まる、緊張感のある体験を味わえるゲームです。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/access-5girls-thumbnail.png",
     thumbnailAlt: "Access to your 5 Girls のサムネイル",
@@ -101,8 +104,8 @@ const projects = [
   {
     title: "昔の労働体験ゲーム(煮塾ゲーム)",
     phase: "課プロ2年 冬",
-    roles: ["担当詳細を追記予定"],
-    description: "課プロ2年冬の代表作として掲載。担当内容や制作背景を追記できるように余白を持たせています。",
+    roles: ["企画", "プログラミング"],
+    description: "課プロ2年冬に制作した作品で、企画とプログラミングを担当しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/old-craft-thumbnail.png",
     thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
@@ -122,8 +125,8 @@ const projects = [
   {
     title: "起き上がりこぼしゲーム",
     phase: "課プロ1年 冬",
-    roles: ["モデリング", "イラスト", "ステージ作成"],
-    description: "課プロ1年冬に制作した作品で、モデリング、イラスト、ステージ作成を担当しました。",
+    roles: ["モデリング", "イラスト"],
+    description: "課プロ1年冬に制作した作品で、モデリングとイラストを担当しました。",
     categories: ["games"],
     thumbnailImage: "",
     thumbnailAlt: "起き上がりこぼしゲーム のサムネイル",
@@ -150,8 +153,8 @@ const projects = [
   {
     title: "チョコ旅",
     phase: "制作作品",
-    roles: ["グラフィッカ"],
-    description: "チョコ旅では、グラフィッカとしてビジュアル制作に関わりました。",
+    roles: ["プロジェクトマネージャー", "モデリング", "アニメーション"],
+    description: "チョコ旅では、プロジェクトマネージャーとして進行に関わりながら、モデリングとアニメーション制作を担当しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
     thumbnailAlt: "チョコ旅 のサムネイル",
