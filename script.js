@@ -8,10 +8,9 @@ const profile = {
     "ゲームエンジニアとして、企画から実装、ビジュアル制作まで作品に必要な工程へ柔軟に関わってきました。プログラムだけでなく、モデルやイラスト、ステージ制作にも対応し、足りない要素を自分で補いながらゲーム全体を前に進められることが強みです。サークルでの共同制作だけでなく、地域に根差した展示向けゲーム制作にも取り組み、相手や場に合わせて体験を作ることを大切にしています。",
   strengths: ["横断的な制作力", "チーム制作", "地域向けゲーム制作", "自走力", "Unity制作"],
   info: [
-    { label: "Role", value: "ゲームエンジニア" },
-    { label: "School", value: "〇〇大学 / 学部・学科・学年を入力" },
+    { label: "School", value: "会津大学 在学中" },
     { label: "GitHub", value: "GitHub URL を追加" },
-    { label: "Email", value: "連絡先メールアドレスを追加" }
+    { label: "Email", value: "s1320062@u-aizu.ac.jp" }
   ]
 };
 
@@ -185,8 +184,9 @@ const skillGroups = {
 };
 
 const education = [
-  { date: "2024", title: "私立●●高校 女子部 卒業", body: "" },
-  { date: "2021", title: "私立●●高校 女子部 入学", body: "" }
+  { date: "2021", title: "星野高校 入学", body: "" },
+  { date: "2024", title: "星野高校 卒業", body: "" },
+  { date: "2024", title: "会津大学 入学", body: "" }
 ];
 
 const categoryLabels = {
@@ -196,13 +196,13 @@ const categoryLabels = {
 };
 
 const events = [
-  { date: "2026/01", title: "ミニミニ博物館", body: "福島県立博物館" },
-  { date: "2025/12", title: "コミックマーケット107", body: "自主制作ゲームを展示・頒布" },
-  { date: "2025/10", title: "〇〇大学 文化祭 展示", body: "" },
-  { date: "2025/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" },
-  { date: "2024/12", title: "コミックマーケット105", body: "自主制作ゲームを展示・頒布" },
+  { date: "2024/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" },
   { date: "2024/10", title: "〇〇大学 文化祭 展示", body: "" },
-  { date: "2024/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" }
+  { date: "2024/12", title: "コミックマーケット105", body: "自主制作ゲームを展示・頒布" },
+  { date: "2025/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" },
+  { date: "2025/10", title: "〇〇大学 文化祭 展示", body: "" },
+  { date: "2025/12", title: "コミックマーケット107", body: "自主制作ゲームを展示・頒布" },
+  { date: "2026/01", title: "ミニミニ博物館", body: "福島県立博物館" }
 ];
 
 function toEmbedUrl(url) {
