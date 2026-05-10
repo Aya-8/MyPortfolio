@@ -1,5 +1,5 @@
 const profile = {
-  name: "YOUR NAME",
+  name: "Haga Maaya",
   title: "ゲームエンジニア",
   tagline: "サークルでのチーム制作や地域に根差したゲーム制作を通して、企画から実装まで横断して取り組むゲームエンジニア志望。",
   summary:
