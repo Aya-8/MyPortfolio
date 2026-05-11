@@ -160,7 +160,8 @@ const projects = [
     phase: "2026 3月～4月(継続開発中)",
     roles: ["プロジェクトマネージャー", "モデリング", "アニメーション"],
     technologies: ["Unity", "C#", "Blender"],
-    description: "チョコ旅では、プロジェクトマネージャーとして進行に関わりながら、モデリングとアニメーション制作を担当しました。",
+    description:
+      "大学のサークルで8人チームを組み、開発しているアクションゲームです。チョコの特徴である「溶ける」や「他の食べ物をコーティングできる」といった要素を取り入れつつ、ポップな雰囲気のゲームにしました。プロジェクトマネージャーとして進行しながら、主にモデリングとキャラクターアニメーションを担当しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
     thumbnailAlt: "チョコ旅 のサムネイル",
