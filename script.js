@@ -90,11 +90,14 @@ const projects = [
     showVideo: true
   },
   {
-    title: "昔の労働体験ゲーム(煮塾ゲーム)",
+    title: "昔の労働体験ゲーム(煮熟ゲーム)",
     phase: "2025 11月～2026 1月",
     roles: ["企画", "プログラミング"],
     technologies: ["Unity", "C#", "Blender", "Procreate"],
-    description: "課プロ2年冬に制作した作品で、企画とプログラミングを担当しました。",
+    description:
+      "福島県立博物館の展示物をテーマに幼稚園児を主な対象として作成したゲームです。\n昔の労働をテーマに和紙を作る過程を3つのミニゲームにしました。\n\n" +
+      "私が担当したミニゲームは和紙のもととなる木の皮を煮る「煮熟」という作業を模したゲームです。\n分かりやすさのため文字での説明を無くし、音声による説明やイラストやモデルによって直感的に操作が分かるようにしました。\n" +
+      "また、注目を促すために常に鍋から蒸気のエフェクトが出るようにしたり、正しい操作を行ったときには星が散るようなエフェクトを飛ばすようにしました。\n実際の展示では、オリジナルコントローラーを用いて遊んでもらいました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/old-craft-thumbnail.png",
     thumbnailAlt: "昔の労働体験ゲーム のサムネイル",
@@ -116,7 +119,10 @@ const projects = [
     phase: "制作作品",
     roles: ["モデリング", "ミニゲーム制作"],
     technologies: ["Unity", "C#"],
-    description: "大学オリエンテーションすごろくゲームで、モデリングとミニゲーム制作を担当しました。",
+    description:
+      "4月に大学で行われるオリエンテーションで新入生に遊んでもらうための6人同時プレイのすごろくゲームです。\n\n" +
+      "新入生が大学について知れたり、クラスの人とのコミュニケーションを取るきっかけになるようなゲームデザインです。\n\n" +
+      "私が担当したのは、大学の敷地内にある建物や木、コマの3Dモデルとミニゲームの制作です。\nこのミニゲームは6人同時に遊べるチキンレースのようなゲームです。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/orientation-game-thumbnail.png",
     thumbnailAlt: "大学オリエンテーションすごろくゲーム のサムネイル",
@@ -174,7 +180,7 @@ const projects = [
       {
         src: "assets/details/choco-tabi-character-animation-2.mp4",
         title: "チョコ旅 キャラクターアニメーション 2",
-        poster: "assets/thumbnails/choco-tabi-character-thumbnail.png",
+        poster: "assets/thumbnails/choco-tabi-character-animation-2-poster.png",
         caption: "キャラクターアニメーション"
       }
     ],
@@ -211,15 +217,15 @@ const projects = [
     showVideo: false
   },
   {
-    title: "煮塾ゲームのエフェクト",
+    title: "煮熟ゲームのエフェクト",
     phase: "2025 11月～2026 1月",
     roles: ["エフェクト"],
     technologies: ["Unity"],
     description:
-      "煮塾ゲームで使用したエフェクトをまとめた作品です。ゲーム内での見え方が分かるように、動画で掲載しています。",
+      "煮熟ゲームで使用したエフェクトをまとめた作品です。ゲーム内での見え方が分かるように、動画で掲載しています。",
     categories: ["models"],
     thumbnailImage: "assets/thumbnails/nijuku-effect-thumbnail.png",
-    thumbnailAlt: "煮塾ゲームのエフェクト のサムネイル",
+    thumbnailAlt: "煮熟ゲームのエフェクト のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
@@ -227,9 +233,9 @@ const projects = [
     detailVideos: [
       {
         src: "assets/details/nijuku-effect.mp4",
-        title: "煮塾ゲームのエフェクト動画",
+        title: "煮熟ゲームのエフェクト動画",
         poster: "assets/thumbnails/nijuku-effect-thumbnail.png",
-        caption: "煮塾ゲームのエフェクト"
+        caption: "煮熟ゲームのエフェクト"
       }
     ],
     showPhase: false,
@@ -265,8 +271,7 @@ const education = [
 
 const categoryLabels = {
   games: "Games",
-  models: "3DCG",
-  illustrations: "Illustration"
+  models: "3DCG"
 };
 
 const events = [
@@ -616,8 +621,7 @@ function renderFooterContacts() {
 function renderProjects() {
   const containers = {
     games: document.getElementById("games-grid"),
-    models: document.getElementById("models-grid"),
-    illustrations: document.getElementById("illustrations-grid")
+    models: document.getElementById("models-grid")
   };
 
   projects.forEach((project) => {
@@ -675,8 +679,8 @@ function setupProjectModal() {
     phase.textContent = project.phase;
     phase.hidden = project.showPhase === false || !project.phase;
     title.textContent = project.title;
-    role.textContent = `Role: ${project.roles.join(" / ")}`;
-    role.hidden = project.showRole === false || !(project.roles || []).length;
+    role.textContent = "";
+    role.hidden = true;
     description.textContent = project.description;
 
     tags.replaceChildren();
@@ -798,7 +802,7 @@ function setupReveal() {
 }
 
 function setupSectionNavigation() {
-  const sectionIds = ["games", "models", "skills", "history", "illustrations"];
+  const sectionIds = ["games", "models", "skills", "history"];
   const links = Array.from(document.querySelectorAll("[data-section-link]"));
   const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 

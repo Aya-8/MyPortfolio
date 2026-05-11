@@ -884,6 +884,7 @@ h2 {
   color: var(--ink);
   font-size: 1.2rem;
   line-height: 1.9;
+  white-space: pre-line;
 }
 
 .project-modal-media {
