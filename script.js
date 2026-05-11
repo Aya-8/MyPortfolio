@@ -51,13 +51,9 @@ const projects = [
       {
         src: "assets/details/purupuru-purin-controller.jpg",
         alt: "プルプルプリンのオリジナルコントローラー接続写真",
-        caption: "同じプロジェクトに参加する先輩に制作していただいたオリジナルコントローラー"
-      }
-    ],
-    detailLinks: [
-      {
-        label: "Original Controller Video",
-        url: "https://youtu.be/NRYm6qiJPUg"
+        caption: "同じプロジェクトに参加する先輩に制作していただいたオリジナルコントローラー",
+        videoUrl: "https://youtu.be/NRYm6qiJPUg",
+        videoTitle: "プルプルプリン オリジナルコントローラー動画"
       }
     ],
     showVideo: true
@@ -104,7 +100,7 @@ const projects = [
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "",
+    youtube: "https://youtu.be/INm9X4DM-TI?t=49",
     detailImages: [
       {
         src: "assets/details/old-craft-controller.jpg",
@@ -295,15 +291,17 @@ function toEmbedUrl(url) {
 
   try {
     const parsed = new URL(url);
+    const startSeconds = getYouTubeStartSeconds(parsed);
+    const startQuery = startSeconds > 0 ? `?start=${startSeconds}` : "";
 
     if (parsed.hostname.includes("youtu.be")) {
-      return `https://www.youtube.com/embed/${parsed.pathname.replace("/", "")}`;
+      return `https://www.youtube.com/embed/${parsed.pathname.replace("/", "")}${startQuery}`;
     }
 
     if (parsed.hostname.includes("youtube.com")) {
       const videoId = parsed.searchParams.get("v");
       if (videoId) {
-        return `https://www.youtube.com/embed/${videoId}`;
+        return `https://www.youtube.com/embed/${videoId}${startQuery}`;
       }
     }
   } catch (error) {
@@ -311,6 +309,43 @@ function toEmbedUrl(url) {
   }
 
   return "";
+}
+
+function parseYouTubeTimestamp(value) {
+  if (!value) {
+    return 0;
+  }
+
+  if (/^\d+$/.test(value)) {
+    return Number.parseInt(value, 10);
+  }
+
+  const match = value.match(/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$/i);
+  if (!match) {
+    return 0;
+  }
+
+  const hours = Number.parseInt(match[1] || "0", 10);
+  const minutes = Number.parseInt(match[2] || "0", 10);
+  const seconds = Number.parseInt(match[3] || "0", 10);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+function getYouTubeStartSeconds(parsedUrl) {
+  const candidates = [
+    parsedUrl.searchParams.get("t"),
+    parsedUrl.searchParams.get("start"),
+    parsedUrl.searchParams.get("/t")
+  ];
+
+  for (const value of candidates) {
+    const seconds = parseYouTubeTimestamp(value);
+    if (seconds > 0) {
+      return seconds;
+    }
+  }
+
+  return 0;
 }
 
 function createInfoItem(label, value) {
@@ -466,14 +501,32 @@ function createDetailImageBlock(image) {
   const figure = document.createElement("figure");
   figure.className = "project-modal-figure";
 
-  figure.append(
-    createImageFrame(
-      image.src,
-      image.alt,
-      "project-modal-image-frame",
-      "project-modal-image"
-    )
+  const frame = createImageFrame(
+    image.src,
+    image.alt,
+    "project-modal-image-frame",
+    "project-modal-image"
   );
+
+  if (image.videoUrl) {
+    frame.classList.add("has-video-link");
+
+    const overlayLink = document.createElement("a");
+    overlayLink.className = "project-modal-video-overlay";
+    overlayLink.href = image.videoUrl;
+    overlayLink.target = "_blank";
+    overlayLink.rel = "noreferrer";
+    overlayLink.setAttribute("aria-label", image.videoTitle || "Watch video");
+
+    const overlayIcon = document.createElement("span");
+    overlayIcon.className = "project-modal-video-overlay-icon";
+    overlayIcon.textContent = "▶";
+    overlayLink.append(overlayIcon);
+
+    frame.append(overlayLink);
+  }
+
+  figure.append(frame);
 
   if (image.caption) {
     const caption = document.createElement("figcaption");

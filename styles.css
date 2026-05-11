@@ -899,6 +899,7 @@ h2 {
 }
 
 .project-modal-image-frame {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -910,6 +911,35 @@ h2 {
   width: 100%;
   max-height: 420px;
   object-fit: cover;
+}
+
+.project-modal-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  background: rgba(17, 17, 17, 0.18);
+  text-decoration: none;
+}
+
+.project-modal-image-frame.has-video-link:hover .project-modal-video-overlay,
+.project-modal-image-frame.has-video-link:focus-within .project-modal-video-overlay {
+  opacity: 1;
+}
+
+.project-modal-video-overlay-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 2rem;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.18);
 }
 
 .project-modal-image-caption {
