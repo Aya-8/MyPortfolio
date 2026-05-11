@@ -1,5 +1,6 @@
 const profile = {
   name: "芳賀満亜矢",
+  furigana: "はがまあや",
   title: "ゲームエンジニア",
   tagline: "サークルでのチーム制作や地域に根差したゲーム制作を通して、企画から実装まで横断して取り組むゲームエンジニア志望。",
   summary: "",
@@ -14,21 +15,6 @@ const profile = {
 };
 
 const projects = [
-  {
-    title: "なつみんげ～",
-    phase: "2024 8月～10月",
-    roles: ["イラスト"],
-    technologies: ["Unity", "C#", "Procreate"],
-    description: "1年生の時に参加した作品で、イラスト制作を担当しました。",
-    categories: ["games"],
-    thumbnailImage: "",
-    thumbnailAlt: "なつみんげ～ のサムネイル",
-    playUrl: "",
-    playLabel: "Play on Unityroom",
-    playPlatform: "Unityroom",
-    youtube: "",
-    showVideo: true
-  },
   {
     title: "所持金ギリギリまで食べるぞ学食ゲーム",
     phase: "2024 8月～9月",
@@ -170,6 +156,60 @@ const projects = [
     playPlatform: "Unityroom",
     youtube: "https://youtu.be/Fz9tC0Q5S3Q",
     showVideo: true
+  },
+  {
+    title: "チョコ旅 3DCG",
+    phase: "2026 3月～4月(継続開発中)",
+    roles: ["モデリング", "アニメーション"],
+    technologies: ["Blender"],
+    description:
+      "チョコ旅で担当した3DCGのうち、キャラクターアニメーションをまとめた作品です。ゲーム本編で使用する動きが分かるように、アニメーションの見せ場を中心に掲載しています。",
+    categories: ["models"],
+    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
+    thumbnailAlt: "チョコ旅 3DCG のサムネイル",
+    playUrl: "",
+    playLabel: "Play on Unityroom",
+    playPlatform: "Unityroom",
+    youtube: "",
+    detailVideos: [
+      {
+        src: "assets/details/choco-tabi-3dcg.mp4",
+        title: "チョコ旅 キャラクターアニメーション 1",
+        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        caption: "キャラクターアニメーション"
+      },
+      {
+        src: "assets/details/choco-tabi-character-animation-2.mp4",
+        title: "チョコ旅 キャラクターアニメーション 2",
+        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        caption: "キャラクターアニメーション"
+      }
+    ],
+    showVideo: false
+  },
+  {
+    title: "チョコ旅 シェーダー",
+    phase: "2026 3月～4月(継続開発中)",
+    roles: ["シェーダー"],
+    technologies: ["Unity", "Shader Graph"],
+    description:
+      "チョコ旅で使用している、チョコが形状変化するときのシェーダーをまとめた作品です。ゲーム内での見え方が分かるように、形状変化の表現を説明する動画を掲載しています。",
+    categories: ["models"],
+    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
+    thumbnailAlt: "チョコ旅 シェーダー のサムネイル",
+    playUrl: "",
+    playLabel: "Play on Unityroom",
+    playPlatform: "Unityroom",
+    youtube: "",
+    detailVideos: [
+      {
+        src: "assets/details/choco-tabi-shader.mp4",
+        title: "チョコ旅 シェーダー動画",
+        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        caption: "チョコの形状変化シェーダー"
+      }
+    ],
+    showVideo: false
   }
 ];
 
@@ -321,6 +361,37 @@ function createVideoBlock(project, showPlaceholder = false) {
   return frame;
 }
 
+function createDetailVideoBlock(video) {
+  const figure = document.createElement("figure");
+  figure.className = "project-modal-figure";
+
+  const frame = document.createElement("div");
+  frame.className = "video-frame";
+
+  const player = document.createElement("video");
+  player.src = video.src;
+  player.controls = true;
+  player.preload = "metadata";
+  player.playsInline = true;
+  player.title = video.title || "Project video";
+
+  if (video.poster) {
+    player.poster = video.poster;
+  }
+
+  frame.append(player);
+  figure.append(frame);
+
+  if (video.caption) {
+    const caption = document.createElement("figcaption");
+    caption.className = "project-modal-image-caption";
+    caption.textContent = video.caption;
+    figure.append(caption);
+  }
+
+  return figure;
+}
+
 function createImageFrame(src, alt, frameClassName, imageClassName) {
   const frame = document.createElement("div");
   frame.className = frameClassName;
@@ -409,6 +480,13 @@ function createProjectCard(project, options = {}) {
   caption.className = "thumbnail-caption";
   caption.textContent = project.roles.join(" / ");
 
+  const status = document.createElement("div");
+  status.className = "thumbnail-status";
+
+  if (project.playUrl) {
+    status.append(createPill("Playable", "work-status-pill"));
+  }
+
   const hoverPanel = document.createElement("div");
   hoverPanel.className = "thumbnail-hover-panel";
 
@@ -418,16 +496,14 @@ function createProjectCard(project, options = {}) {
 
   hoverPanel.append(hoverLabel);
   textLayer.append(title, caption);
-  thumbnail.append(textLayer, hoverPanel);
 
-  const meta = document.createElement("div");
-  meta.className = "work-card-meta";
-
-  if (project.playUrl) {
-    meta.append(createPill("Playable", "work-status-pill"));
+  if (status.childElementCount > 0) {
+    textLayer.append(status);
   }
 
-  trigger.append(thumbnail, meta);
+  thumbnail.append(textLayer, hoverPanel);
+
+  trigger.append(thumbnail);
   trigger.addEventListener("click", () => {
     openProjectModal(project, trigger);
   });
@@ -472,7 +548,17 @@ function renderProfile() {
   const taglineElement = document.getElementById("profile-tagline");
   const summaryElement = document.getElementById("profile-summary");
 
-  nameElement.textContent = profile.name;
+  const ruby = document.createElement("ruby");
+  ruby.className = "profile-name-ruby";
+  ruby.append(profile.name);
+
+  if (profile.furigana) {
+    const rt = document.createElement("rt");
+    rt.textContent = profile.furigana;
+    ruby.append(rt);
+  }
+
+  nameElement.replaceChildren(ruby);
   taglineElement.textContent = profile.tagline;
   summaryElement.textContent = profile.summary;
   summaryElement.hidden = !profile.summary;
@@ -558,8 +644,7 @@ function setupProjectModal() {
     meta.replaceChildren(
       createModalMetaItem("Period", project.phase),
       createModalMetaItem("Role", project.roles.join(" / ")),
-      createModalMetaItem("Tech", (project.technologies || []).join(" / ")),
-      createModalMetaItem("Published", project.playUrl ? project.playPlatform || "External" : "Not Set")
+      createModalMetaItem("Tech", (project.technologies || []).join(" / "))
     );
 
     media.replaceChildren();
@@ -573,6 +658,10 @@ function setupProjectModal() {
 
     (project.detailImages || []).forEach((image) => {
       media.append(createDetailImageBlock(image));
+    });
+
+    (project.detailVideos || []).forEach((video) => {
+      media.append(createDetailVideoBlock(video));
     });
 
     actions.replaceChildren();

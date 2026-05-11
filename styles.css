@@ -170,6 +170,12 @@ h1 {
   letter-spacing: -0.05em;
 }
 
+.profile-name-ruby rt {
+  font-size: 0.22em;
+  letter-spacing: 0.12em;
+  color: var(--accent-pink);
+}
+
 h2 {
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   letter-spacing: -0.04em;
@@ -192,11 +198,12 @@ h2 {
 }
 
 .hero-lead {
-  max-width: 26em;
+  max-width: none;
   margin-top: 16px;
-  font-size: 1.18rem;
+  font-size: clamp(0.9rem, 2.2vw, 1.18rem);
   color: var(--ink);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .hero-summary {
@@ -353,7 +360,7 @@ h2 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.98));
+  background: transparent;
   box-shadow: var(--shadow);
 }
 
@@ -396,7 +403,6 @@ h2 {
   justify-content: flex-end;
   min-height: 220px;
   padding: 22px;
-  border-bottom: 1px solid var(--line);
   background:
     linear-gradient(140deg, rgba(71, 255, 139, 0.16) 0%, rgba(255, 255, 255, 0.98) 42%, rgba(255, 47, 168, 0.16) 100%);
   transition: transform 0.18s ease;
@@ -476,6 +482,12 @@ h2 {
   transition: opacity 0.18s ease;
 }
 
+.thumbnail-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .thumbnail-hover-panel {
   position: absolute;
   inset: 0;
@@ -491,16 +503,17 @@ h2 {
   pointer-events: none;
   backdrop-filter: blur(10px);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.68));
+    linear-gradient(180deg, rgba(71, 255, 139, 0.34), rgba(71, 255, 139, 0.46));
 }
 
 .thumbnail-hover-label {
   display: inline-block;
-  color: var(--ink);
+  color: #ffffff;
   font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(17, 17, 17, 0.32);
 }
 
 .thumbnail-phase {
@@ -540,18 +553,11 @@ h2 {
   color: var(--accent-green);
 }
 
-.work-card-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 16px 22px 18px;
-}
-
 .work-status-pill {
-  margin-left: auto;
-  border-color: rgba(71, 255, 139, 0.6);
-  background: rgba(71, 255, 139, 0.18);
+  border-color: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
 }
 
 .project-title {
@@ -581,6 +587,14 @@ h2 {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
 }
 
 .video-placeholder {
@@ -987,10 +1001,6 @@ code {
   .thumbnail-period {
     top: 12px;
     right: 12px;
-  }
-
-  .work-card-meta {
-    padding: 14px 18px 18px;
   }
 
   h1 {
