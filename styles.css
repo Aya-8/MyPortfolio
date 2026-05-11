@@ -373,6 +373,12 @@ h2 {
   transform: translateY(-3px);
 }
 
+.work-trigger:hover .thumbnail-hover-panel,
+.work-trigger:focus-visible .thumbnail-hover-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .work-trigger:focus-visible {
   outline: 2px solid var(--accent-green);
   outline-offset: 4px;
@@ -462,6 +468,37 @@ h2 {
   z-index: 1;
   display: grid;
   gap: 14px;
+}
+
+.thumbnail-hover-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  pointer-events: none;
+}
+
+.thumbnail-hover-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .thumbnail-phase {
@@ -597,6 +634,45 @@ h2 {
   padding: 24px 28px;
 }
 
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.contact-item {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.contact-label {
+  margin: 0 0 8px;
+  color: var(--accent-pink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-value,
+.contact-link {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.7;
+  word-break: break-word;
+}
+
+.contact-link {
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  color: var(--accent-green);
+}
+
 .index-menu-toggle {
   position: fixed;
   top: 18px;
@@ -710,7 +786,7 @@ h2 {
 
 .project-modal-panel {
   position: relative;
-  width: min(820px, 100%);
+  width: min(1200px, calc(100vw - 48px));
   max-height: min(88vh, 920px);
   overflow: auto;
   border: 1px solid var(--line);
@@ -864,6 +940,7 @@ code {
 }
 
 @media (max-width: 980px) {
+  .contact-list,
   .skills-layout,
   .history-layout,
   .about-grid,

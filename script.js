@@ -1,16 +1,15 @@
 const profile = {
-  name: "Haga Maaya",
+  name: "芳賀満亜矢",
   title: "ゲームエンジニア",
   tagline: "サークルでのチーム制作や地域に根差したゲーム制作を通して、企画から実装まで横断して取り組むゲームエンジニア志望。",
-  summary:
-    "Unity を中心に、グラフィック制作・モデリング・イラスト・企画・プログラミングまで幅広く担当してきました。サークルでのチーム制作や地域イベントに向けた展示作品の制作を通して、ゲームに必要な要素を自分の手で準備し、完成まで形にしていく力を磨いています。",
+  summary: "",
   about:
     "ゲームエンジニアとして、企画から実装、ビジュアル制作まで作品に必要な工程へ柔軟に関わってきました。プログラムだけでなく、モデルやイラスト、ステージ制作にも対応し、足りない要素を自分で補いながらゲーム全体を前に進められることが強みです。サークルでの共同制作だけでなく、地域に根差した展示向けゲーム制作にも取り組み、相手や場に合わせて体験を作ることを大切にしています。",
   strengths: ["横断的な制作力", "チーム制作", "地域向けゲーム制作", "自走力", "Unity制作"],
-  info: [
-    { label: "School", value: "会津大学 在学中" },
-    { label: "GitHub", value: "GitHub URL を追加" },
-    { label: "Email", value: "s1320062@u-aizu.ac.jp" }
+  contacts: [
+    { label: "Email", value: "s1320062@u-aizu.ac.jp", href: "mailto:s1320062@u-aizu.ac.jp" },
+    { label: "GitHub", value: "GitHub URL を追加", href: "" },
+    { label: "YouTube", value: "YouTube URL を追加", href: "" }
   ]
 };
 
@@ -197,12 +196,12 @@ const categoryLabels = {
 
 const events = [
   { date: "2024/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" },
-  { date: "2024/10", title: "〇〇大学 文化祭 展示", body: "" },
+  { date: "2024/10", title: "会津大学 文化祭 展示", body: "" },
   { date: "2024/12", title: "コミックマーケット105", body: "自主制作ゲームを展示・頒布" },
   { date: "2025/07", title: "レトロ横丁", body: "喜多方市で行われる祭での体験型展示" },
-  { date: "2025/10", title: "〇〇大学 文化祭 展示", body: "" },
+  { date: "2025/10", title: "会津大学 文化祭 展示", body: "" },
   { date: "2025/12", title: "コミックマーケット107", body: "自主制作ゲームを展示・頒布" },
-  { date: "2026/01", title: "ミニミニ博物館", body: "福島県立博物館" }
+  { date: "2026/01", title: "ミニミニ博物館", body: "福島県立博物館でのゲーム体験会" }
 ];
 
 function toEmbedUrl(url) {
@@ -255,6 +254,32 @@ function createPill(text, className) {
   pill.className = className;
   pill.textContent = text;
   return pill;
+}
+
+function createContactItem(entry) {
+  const item = document.createElement("div");
+  item.className = "contact-item";
+
+  const label = document.createElement("p");
+  label.className = "contact-label";
+  label.textContent = entry.label;
+
+  let valueElement;
+  if (entry.href) {
+    valueElement = document.createElement("a");
+    valueElement.className = "contact-link";
+    valueElement.href = entry.href;
+    valueElement.target = entry.href.startsWith("mailto:") ? "_self" : "_blank";
+    valueElement.rel = entry.href.startsWith("mailto:") ? "" : "noreferrer";
+    valueElement.textContent = entry.value;
+  } else {
+    valueElement = document.createElement("p");
+    valueElement.className = "contact-value";
+    valueElement.textContent = entry.value;
+  }
+
+  item.append(label, valueElement);
+  return item;
 }
 
 function createVideoBlock(project, showPlaceholder = false) {
@@ -375,8 +400,16 @@ function createProjectCard(project, options = {}) {
   caption.className = "thumbnail-caption";
   caption.textContent = project.roles.join(" / ");
 
+  const hoverPanel = document.createElement("div");
+  hoverPanel.className = "thumbnail-hover-panel";
+
+  const hoverLabel = document.createElement("span");
+  hoverLabel.className = "thumbnail-hover-label";
+  hoverLabel.textContent = "詳細を開く";
+
+  hoverPanel.append(hoverLabel);
   textLayer.append(title, caption);
-  thumbnail.append(textLayer);
+  thumbnail.append(textLayer, hoverPanel);
 
   const meta = document.createElement("div");
   meta.className = "work-card-meta";
@@ -432,19 +465,21 @@ function createSkillPill(entry) {
 }
 
 function renderProfile() {
-  document.getElementById("profile-name").textContent = profile.name;
-  document.getElementById("profile-tagline").textContent = profile.tagline;
-  document.getElementById("profile-summary").textContent = profile.summary;
-  document.getElementById("about-copy").textContent = profile.about;
+  const nameElement = document.getElementById("profile-name");
+  const taglineElement = document.getElementById("profile-tagline");
+  const summaryElement = document.getElementById("profile-summary");
 
-  const strengthContainer = document.getElementById("core-strengths");
-  profile.strengths.forEach((strength) => {
-    strengthContainer.append(createPill(strength, "pill"));
-  });
+  nameElement.textContent = profile.name;
+  taglineElement.textContent = profile.tagline;
+  summaryElement.textContent = profile.summary;
+  summaryElement.hidden = !profile.summary;
+}
 
-  const basicInfo = document.getElementById("basic-info");
-  profile.info.forEach((entry) => {
-    basicInfo.append(createInfoItem(entry.label, entry.value));
+function renderFooterContacts() {
+  const footerContacts = document.getElementById("footer-contacts");
+
+  profile.contacts.forEach((entry) => {
+    footerContacts.append(createContactItem(entry));
   });
 }
 
@@ -619,7 +654,7 @@ function setupReveal() {
 }
 
 function setupSectionNavigation() {
-  const sectionIds = ["about", "games", "models", "skills", "history", "illustrations"];
+  const sectionIds = ["games", "models", "skills", "history", "illustrations"];
   const links = Array.from(document.querySelectorAll("[data-section-link]"));
   const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
 
@@ -708,6 +743,7 @@ renderProfile();
 renderProjects();
 renderSkills();
 renderHistory();
+renderFooterContacts();
 setupReveal();
 setupSectionNavigation();
 setupIndexMenu();
