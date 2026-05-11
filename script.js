@@ -112,21 +112,6 @@ const projects = [
     showVideo: true
   },
   {
-    title: "起き上がりこぼしゲーム",
-    phase: "2024 11月～2026 1月",
-    roles: ["モデリング", "イラスト"],
-    technologies: ["Unity", "C#", "Blender", "Procreate"],
-    description: "課プロ1年冬に制作した作品で、モデリングとイラストを担当しました。",
-    categories: ["games"],
-    thumbnailImage: "",
-    thumbnailAlt: "起き上がりこぼしゲーム のサムネイル",
-    playUrl: "",
-    playLabel: "Play on Unityroom",
-    playPlatform: "Unityroom",
-    youtube: "",
-    showVideo: true
-  },
-  {
     title: "大学オリエンテーションすごろくゲーム",
     phase: "制作作品",
     roles: ["モデリング", "ミニゲーム制作"],
