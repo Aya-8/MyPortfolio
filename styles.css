@@ -379,6 +379,11 @@ h2 {
   transform: translateY(0);
 }
 
+.work-trigger:hover .thumbnail-text,
+.work-trigger:focus-visible .thumbnail-text {
+  opacity: 0.24;
+}
+
 .work-trigger:focus-visible {
   outline: 2px solid var(--accent-green);
   outline-offset: 4px;
@@ -468,6 +473,7 @@ h2 {
   z-index: 1;
   display: grid;
   gap: 14px;
+  transition: opacity 0.18s ease;
 }
 
 .thumbnail-hover-panel {
@@ -483,22 +489,18 @@ h2 {
     opacity 0.18s ease,
     transform 0.18s ease;
   pointer-events: none;
+  backdrop-filter: blur(10px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.68));
 }
 
 .thumbnail-hover-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 0 18px;
-  border: 1px solid rgba(17, 17, 17, 0.14);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(10px);
+  display: inline-block;
   color: var(--ink);
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .thumbnail-phase {
@@ -544,14 +546,6 @@ h2 {
   justify-content: space-between;
   gap: 14px;
   padding: 16px 22px 18px;
-}
-
-.work-open-text {
-  color: var(--accent-green);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .work-status-pill {
