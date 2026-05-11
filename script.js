@@ -18,6 +18,7 @@ const projects = [
     title: "なつみんげ～",
     phase: "2024 8月～10月",
     roles: ["イラスト"],
+    technologies: ["Unity", "C#"],
     description: "1年生の時に参加した作品で、イラスト制作を担当しました。",
     categories: ["games"],
     thumbnailImage: "",
@@ -32,6 +33,7 @@ const projects = [
     title: "所持金ギリギリまで食べるぞ学食ゲーム",
     phase: "2024 8月～9月",
     roles: ["企画", "イラスト", "プログラミング"],
+    technologies: ["Unity", "C#"],
     description:
       "会津大学に新しく入学する1年生に向けて制作した、ワンボタンで遊べるゲームです。実際に会津大学の学食で食べられる食事を登場させ、値段も実際の学食に近い設定にしました。気軽に遊べる操作性を意識し、企画からプログラミング、イラストまで一人で制作しました。",
     categories: ["games"],
@@ -47,6 +49,7 @@ const projects = [
     title: "プルプルプリン",
     phase: "2026 6月～7月",
     roles: ["企画", "プログラミング"],
+    technologies: ["Unity", "C#"],
     description:
       "喜多方で毎年夏に行われるレトロ横丁で展示し、お祭りに遊びに来た方々、特に小学生を中心とした子どもたちに遊んでもらったゲームです。実際の展示では、オリジナルコントローラーを用いて遊んでもらいました。" +
       "このゲームで特にこだわったのは、主人公であるプリンのプルプル感です。シェーダーグラフを用いて sin 波で縦に揺らす表現に加え、スクリプトでプリンの3Dモデルの頂点を直接操作することで、アニメーション再生だけでは出しにくい、よりリアルな揺れを演出しました。" +
@@ -77,6 +80,7 @@ const projects = [
     title: "Access to your 5 Girls❤❤❤❤❤",
     phase: "2026 8月～10月",
     roles: ["プログラミング"],
+    technologies: ["Unity", "C#"],
     description:
       "2025年の夏に、会津大学公認サークル企画開発部（PandD）の7人チームで制作したゲームです。ヒロインが5人いる恋愛シミュレーションノベルゲームで、複数の女の子たちと並列して連絡を取りながら、デートや交際を進めていきます。" +
       "序盤の、さまざまな女の子たちと仲良くなっていく恋愛シミュレーションらしいワクワク感から、次第に彼女たちが抱える葛藤や秘密が明らかになっていく展開へ移っていく点が魅力です。Player の選択によって彼女たちの運命が決まる、緊張感のある体験を味わえるゲームです。",
@@ -103,6 +107,7 @@ const projects = [
     title: "昔の労働体験ゲーム(煮塾ゲーム)",
     phase: "2025 11月～2026 1月",
     roles: ["企画", "プログラミング"],
+    technologies: ["Unity", "C#"],
     description: "課プロ2年冬に制作した作品で、企画とプログラミングを担当しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/old-craft-thumbnail.png",
@@ -124,6 +129,7 @@ const projects = [
     title: "起き上がりこぼしゲーム",
     phase: "2024 11月～2026 1月",
     roles: ["モデリング", "イラスト"],
+    technologies: ["Unity", "C#"],
     description: "課プロ1年冬に制作した作品で、モデリングとイラストを担当しました。",
     categories: ["games"],
     thumbnailImage: "",
@@ -138,6 +144,7 @@ const projects = [
     title: "すごろくゲーム",
     phase: "制作作品",
     roles: ["モデリング", "ミニゲーム制作"],
+    technologies: ["Unity", "C#"],
     description: "すごろくゲームで、モデリングとミニゲーム制作を担当しました。",
     categories: ["games"],
     thumbnailImage: "",
@@ -152,6 +159,7 @@ const projects = [
     title: "チョコ旅",
     phase: "2026 3月～4月(継続開発中)",
     roles: ["プロジェクトマネージャー", "モデリング", "アニメーション"],
+    technologies: ["Unity", "C#"],
     description: "チョコ旅では、プロジェクトマネージャーとして進行に関わりながら、モデリングとアニメーション制作を担当しました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
@@ -556,6 +564,7 @@ function setupProjectModal() {
       createModalMetaItem("Period", project.phase),
       createModalMetaItem("Category", project.categories.map((category) => categoryLabels[category]).join(" / ")),
       createModalMetaItem("Role", project.roles.join(" / ")),
+      createModalMetaItem("Tech", (project.technologies || []).join(" / ")),
       createModalMetaItem("Published", project.playUrl ? project.playPlatform || "External" : "Not Set")
     );
 
