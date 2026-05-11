@@ -28,7 +28,15 @@ const projects = [
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "https://youtu.be/G-47K8UxpC8",
+    youtube: "https://youtu.be/_brd0CUjEHM",
+    detailVideos: [
+      {
+        youtube: "https://youtu.be/og0FxZL2r90",
+        title: "オリエンテーションゲーム ミニゲーム動画",
+        poster: "assets/thumbnails/gakushoku-thumbnail.png",
+        caption: "ミニゲーム動画"
+      }
+    ],
     showVideo: true
   },
   {
@@ -149,7 +157,7 @@ const projects = [
     description:
       "大学のサークルで8人チームを組み、開発しているアクションゲームです。チョコの特徴である「溶ける」や「他の食べ物をコーティングできる」といった要素を取り入れつつ、ポップな雰囲気のゲームにしました。プロジェクトマネージャーとして進行しながら、主にモデリングとキャラクターアニメーションを担当しました。",
     categories: ["games"],
-    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
+    thumbnailImage: "assets/thumbnails/choco-tabi-character-thumbnail.png",
     thumbnailAlt: "チョコ旅 のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
@@ -158,15 +166,15 @@ const projects = [
     showVideo: true
   },
   {
-    title: "チョコ旅 3DCG",
+    title: "チョコ旅 キャラクターモデル・アニメーション",
     phase: "2026 2月～4月(継続開発中)",
     roles: ["モデリング", "アニメーション"],
     technologies: ["Blender"],
     description:
       "チョコ旅で担当した3DCGのうち、キャラクターアニメーションをまとめた作品です。ゲーム本編で使用する動きが分かるように、アニメーションの見せ場を中心に掲載しています。",
     categories: ["models"],
-    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
-    thumbnailAlt: "チョコ旅 3DCG のサムネイル",
+    thumbnailImage: "assets/thumbnails/choco-tabi-character-thumbnail.png",
+    thumbnailAlt: "チョコ旅 キャラクターモデル・アニメーション のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
@@ -175,16 +183,19 @@ const projects = [
       {
         src: "assets/details/choco-tabi-3dcg.mp4",
         title: "チョコ旅 キャラクターアニメーション 1",
-        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        poster: "assets/thumbnails/choco-tabi-character-thumbnail.png",
         caption: "キャラクターアニメーション"
       },
       {
         src: "assets/details/choco-tabi-character-animation-2.mp4",
         title: "チョコ旅 キャラクターアニメーション 2",
-        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        poster: "assets/thumbnails/choco-tabi-character-thumbnail.png",
         caption: "キャラクターアニメーション"
       }
     ],
+    showPhase: false,
+    showRole: false,
+    modalMetaFields: ["tech"],
     showVideo: false
   },
   {
@@ -195,7 +206,7 @@ const projects = [
     description:
       "チョコ旅で使用している、チョコが形状変化するときのシェーダーをまとめた作品です。ゲーム内での見え方が分かるように、形状変化の表現を説明する動画を掲載しています。",
     categories: ["models"],
-    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
+    thumbnailImage: "assets/thumbnails/choco-tabi-shader-thumbnail.png",
     thumbnailAlt: "チョコ旅 シェーダー のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
@@ -205,10 +216,40 @@ const projects = [
       {
         src: "assets/details/choco-tabi-shader.mp4",
         title: "チョコ旅 シェーダー動画",
-        poster: "assets/thumbnails/choco-tabi-thumbnail.png",
+        poster: "assets/thumbnails/choco-tabi-shader-thumbnail.png",
         caption: "チョコの形状変化シェーダー"
       }
     ],
+    showPhase: false,
+    showRole: false,
+    modalMetaFields: ["tech"],
+    showVideo: false
+  },
+  {
+    title: "煮塾ゲームのエフェクト",
+    phase: "2025 11月～2026 1月",
+    roles: ["エフェクト"],
+    technologies: ["Unity"],
+    description:
+      "煮塾ゲームで使用したエフェクトをまとめた作品です。ゲーム内での見え方が分かるように、動画で掲載しています。",
+    categories: ["models"],
+    thumbnailImage: "assets/thumbnails/nijuku-effect-thumbnail.png",
+    thumbnailAlt: "煮塾ゲームのエフェクト のサムネイル",
+    playUrl: "",
+    playLabel: "Play on Unityroom",
+    playPlatform: "Unityroom",
+    youtube: "",
+    detailVideos: [
+      {
+        src: "assets/details/nijuku-effect.mp4",
+        title: "煮塾ゲームのエフェクト動画",
+        poster: "assets/thumbnails/nijuku-effect-thumbnail.png",
+        caption: "煮塾ゲームのエフェクト"
+      }
+    ],
+    showPhase: false,
+    showRole: false,
+    modalMetaFields: ["tech"],
     showVideo: false
   }
 ];
@@ -368,18 +409,33 @@ function createDetailVideoBlock(video) {
   const frame = document.createElement("div");
   frame.className = "video-frame";
 
-  const player = document.createElement("video");
-  player.src = video.src;
-  player.controls = true;
-  player.preload = "metadata";
-  player.playsInline = true;
-  player.title = video.title || "Project video";
+  const embedUrl = toEmbedUrl(video.youtube || "");
 
-  if (video.poster) {
-    player.poster = video.poster;
+  if (embedUrl) {
+    const iframe = document.createElement("iframe");
+    iframe.src = embedUrl;
+    iframe.title = video.title || "Project video";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    frame.append(iframe);
+  } else {
+    const player = document.createElement("video");
+    player.src = video.src;
+    player.controls = true;
+    player.preload = "metadata";
+    player.playsInline = true;
+    player.title = video.title || "Project video";
+
+    if (video.poster) {
+      player.poster = video.poster;
+    }
+
+    frame.append(player);
   }
 
-  frame.append(player);
   figure.append(frame);
 
   if (video.caption) {
@@ -632,20 +688,35 @@ function setupProjectModal() {
   function openProjectModal(project, trigger) {
     lastTrigger = trigger;
     phase.textContent = project.phase;
+    phase.hidden = project.showPhase === false || !project.phase;
     title.textContent = project.title;
     role.textContent = `Role: ${project.roles.join(" / ")}`;
+    role.hidden = project.showRole === false || !(project.roles || []).length;
     description.textContent = project.description;
 
     tags.replaceChildren();
     project.roles.forEach((tag) => {
       tags.append(createPill(tag, "project-tag"));
     });
+    tags.hidden = !(project.roles || []).length;
 
-    meta.replaceChildren(
-      createModalMetaItem("Period", project.phase),
-      createModalMetaItem("Role", project.roles.join(" / ")),
-      createModalMetaItem("Tech", (project.technologies || []).join(" / "))
-    );
+    const metaFields = project.modalMetaFields || ["period", "role", "tech"];
+    const metaItems = [];
+
+    if (metaFields.includes("period") && project.phase) {
+      metaItems.push(createModalMetaItem("Period", project.phase));
+    }
+
+    if (metaFields.includes("role") && (project.roles || []).length) {
+      metaItems.push(createModalMetaItem("Role", project.roles.join(" / ")));
+    }
+
+    if (metaFields.includes("tech") && (project.technologies || []).length) {
+      metaItems.push(createModalMetaItem("Tech", (project.technologies || []).join(" / ")));
+    }
+
+    meta.replaceChildren(...metaItems);
+    meta.hidden = metaItems.length === 0;
 
     media.replaceChildren();
 
