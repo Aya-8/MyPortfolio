@@ -556,7 +556,6 @@ function setupProjectModal() {
 
     meta.replaceChildren(
       createModalMetaItem("Period", project.phase),
-      createModalMetaItem("Category", project.categories.map((category) => categoryLabels[category]).join(" / ")),
       createModalMetaItem("Role", project.roles.join(" / ")),
       createModalMetaItem("Tech", (project.technologies || []).join(" / ")),
       createModalMetaItem("Published", project.playUrl ? project.playPlatform || "External" : "Not Set")
@@ -578,10 +577,6 @@ function setupProjectModal() {
     actions.replaceChildren();
     if (project.playUrl) {
       actions.append(createProjectActionLink(project.playUrl, project.playLabel || "Play Game"));
-    }
-
-    if (project.youtube) {
-      actions.append(createProjectActionLink(project.youtube, "Watch Video", Boolean(project.playUrl)));
     }
 
     (project.detailLinks || []).forEach((link) => {
