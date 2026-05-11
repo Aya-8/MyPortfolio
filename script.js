@@ -8,9 +8,7 @@ const profile = {
     "ゲームエンジニアとして、企画から実装、ビジュアル制作まで作品に必要な工程へ柔軟に関わってきました。プログラムだけでなく、モデルやイラスト、ステージ制作にも対応し、足りない要素を自分で補いながらゲーム全体を前に進められることが強みです。サークルでの共同制作だけでなく、地域に根差した展示向けゲーム制作にも取り組み、相手や場に合わせて体験を作ることを大切にしています。",
   strengths: ["横断的な制作力", "チーム制作", "地域向けゲーム制作", "自走力", "Unity制作"],
   contacts: [
-    { label: "Email", value: "s1320062@u-aizu.ac.jp", href: "mailto:s1320062@u-aizu.ac.jp" },
-    { label: "GitHub", value: "GitHub URL を追加", href: "" },
-    { label: "YouTube", value: "YouTube URL を追加", href: "" }
+    { label: "Email", value: "s1320062@u-aizu.ac.jp", href: "mailto:s1320062@u-aizu.ac.jp" }
   ]
 };
 
