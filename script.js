@@ -28,15 +28,7 @@ const projects = [
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "https://youtu.be/_brd0CUjEHM",
-    detailVideos: [
-      {
-        youtube: "https://youtu.be/og0FxZL2r90",
-        title: "オリエンテーションゲーム ミニゲーム動画",
-        poster: "assets/thumbnails/gakushoku-thumbnail.png",
-        caption: "ミニゲーム動画"
-      }
-    ],
+    youtube: "https://youtu.be/G-47K8UxpC8",
     showVideo: true
   },
   {
@@ -135,18 +127,26 @@ const projects = [
     showVideo: true
   },
   {
-    title: "すごろくゲーム",
+    title: "大学オリエンテーションすごろくゲーム",
     phase: "制作作品",
     roles: ["モデリング", "ミニゲーム制作"],
     technologies: ["Unity", "C#"],
-    description: "すごろくゲームで、モデリングとミニゲーム制作を担当しました。",
+    description: "大学オリエンテーションすごろくゲームで、モデリングとミニゲーム制作を担当しました。",
     categories: ["games"],
-    thumbnailImage: "",
-    thumbnailAlt: "すごろくゲーム のサムネイル",
+    thumbnailImage: "assets/thumbnails/orientation-game-thumbnail.png",
+    thumbnailAlt: "大学オリエンテーションすごろくゲーム のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
-    youtube: "",
+    youtube: "https://youtu.be/_brd0CUjEHM",
+    detailVideos: [
+      {
+        youtube: "https://youtu.be/og0FxZL2r90",
+        title: "オリエンテーションゲーム ミニゲーム動画",
+        poster: "assets/thumbnails/orientation-game-thumbnail.png",
+        caption: "ミニゲーム動画"
+      }
+    ],
     showVideo: true
   },
   {
@@ -157,7 +157,7 @@ const projects = [
     description:
       "大学のサークルで8人チームを組み、開発しているアクションゲームです。チョコの特徴である「溶ける」や「他の食べ物をコーティングできる」といった要素を取り入れつつ、ポップな雰囲気のゲームにしました。プロジェクトマネージャーとして進行しながら、主にモデリングとキャラクターアニメーションを担当しました。",
     categories: ["games"],
-    thumbnailImage: "assets/thumbnails/choco-tabi-character-thumbnail.png",
+    thumbnailImage: "assets/thumbnails/choco-tabi-thumbnail.png",
     thumbnailAlt: "チョコ旅 のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
