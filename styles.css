@@ -857,14 +857,27 @@ h2 {
   font-weight: 700;
 }
 
+.project-modal-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 26px;
+  margin-top: 22px;
+  align-items: start;
+}
+
+.project-modal-side {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
 .project-modal-description {
-  margin: 22px 0 0;
+  margin: 0;
   color: var(--ink);
   line-height: 1.9;
 }
 
 .project-modal-media {
-  margin-top: 22px;
   display: grid;
   gap: 18px;
 }
@@ -900,7 +913,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 22px;
+  margin-top: 0;
 }
 
 .future-card {
@@ -940,6 +953,7 @@ code {
 }
 
 @media (max-width: 980px) {
+  .project-modal-feature,
   .contact-list,
   .skills-layout,
   .history-layout,
