@@ -482,6 +482,27 @@ h2 {
   transition: opacity 0.18s ease;
 }
 
+.thumbnail-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.thumbnail-role-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 47, 168, 0.55);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent-pink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+}
+
 .thumbnail-status {
   display: flex;
   flex-wrap: wrap;

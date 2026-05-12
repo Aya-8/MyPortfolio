@@ -35,8 +35,8 @@ const projects = [
     roles: ["企画", "プログラミング"],
     technologies: ["Unity", "C#"],
     description:
-      "喜多方で毎年夏に行われるレトロ横丁で体験型の展示を行ったゲームです。" <br>+
-      "レトロ横丁のレトロの要素から固めのカラメルプリンを連想しました。意識の芽生えたプリンとなり、食べられないようにスプーンから逃げるというストーリーです。" +
+      "喜多方で毎年夏に行われるレトロ横丁で体験型の展示を行ったゲームです。\n\n" +
+      "レトロ横丁のレトロの要素から固めのカラメルプリンを連想しました。意識の芽生えたプリンとなり、食べられないようにスプーンから逃げるというストーリーです。\n\n" +
       "小さな子供でも楽しく遊べるように、GameOverなし、リザルトもスコアではなく、移動距離などに即したポジティブな言葉で表彰する形式にしています。実際の展示では、オリジナルコントローラーを用いて遊んでもらいました。",
     categories: ["games"],
     thumbnailImage: "assets/thumbnails/purupuru-purin-play.png",
@@ -599,9 +599,12 @@ function createProjectCard(project, options = {}) {
   title.className = "thumbnail-title";
   title.textContent = project.title;
 
-  const caption = document.createElement("p");
-  caption.className = "thumbnail-caption";
-  caption.textContent = project.roles.join(" / ");
+  const rolePills = document.createElement("div");
+  rolePills.className = "thumbnail-roles";
+
+  project.roles.forEach((role) => {
+    rolePills.append(createPill(role, "thumbnail-role-pill"));
+  });
 
   const status = document.createElement("div");
   status.className = "thumbnail-status";
@@ -618,7 +621,7 @@ function createProjectCard(project, options = {}) {
   hoverLabel.textContent = "詳細を開く";
 
   hoverPanel.append(hoverLabel);
-  textLayer.append(title, caption);
+  textLayer.append(title, rolePills);
 
   if (status.childElementCount > 0) {
     textLayer.append(status);
