@@ -184,6 +184,32 @@ const projects = [
     showVideo: false
   },
   {
+    title: "チョコ旅 パッケージ画像",
+    phase: "2026 2月～4月(継続開発中)",
+    roles: ["レイアウト", "ライティング"],
+    technologies: ["Unity"],
+    description:
+      "Unity上で3Dオブジェクトやカメラ、ライトの位置を調節して作成したパッケージ画像です。\n主人公を大きく映しつつ、その背後にお菓子の背景や食べ物から着想を得たカラフルな敵を配置して、ポップで明るい雰囲気を演出しました。",
+    categories: ["models"],
+    thumbnailImage: "assets/thumbnails/choco-tabi-package-thumbnail.png",
+    thumbnailAlt: "チョコ旅 パッケージ画像 のサムネイル",
+    playUrl: "",
+    playLabel: "Play on Unityroom",
+    playPlatform: "Unityroom",
+    youtube: "",
+    detailImages: [
+      {
+        src: "assets/thumbnails/choco-tabi-package-thumbnail.png",
+        alt: "チョコ旅のパッケージ画像",
+        caption: "チョコ旅のパッケージ画像"
+      }
+    ],
+    showPhase: false,
+    showRole: false,
+    modalMetaFields: ["tech"],
+    showVideo: false
+  },
+  {
     title: "チョコ旅 シェーダー",
     phase: "2026 2月～4月(継続開発中)",
     roles: ["シェーダー"],
