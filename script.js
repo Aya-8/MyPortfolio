@@ -156,7 +156,7 @@ const projects = [
     roles: ["モデリング", "アニメーション"],
     technologies: ["Blender"],
     description:
-      "チョコ旅で担当した3DCGのうち、キャラクターアニメーションをまとめた作品です。ゲーム本編で使用する動きが分かるように、アニメーションの見せ場を中心に掲載しています。",
+      "チョコ旅で担当した3DCGのうち、主人公のモデル作成とキャラクターアニメーションをまとめた作品です。主人公モデルを制作したうえで、ゲーム本編で使用する約10種類のアニメーションを制作しました。",
     categories: ["models"],
     thumbnailImage: "assets/thumbnails/choco-tabi-character-thumbnail.png",
     thumbnailAlt: "チョコ旅 キャラクターモデル・アニメーション のサムネイル",
@@ -210,15 +210,15 @@ const projects = [
     showVideo: false
   },
   {
-    title: "チョコ旅 シェーダー",
+    title: "チョコ旅 状態遷移の表現",
     phase: "2026 2月～4月(継続開発中)",
-    roles: ["シェーダー"],
+    roles: ["状態遷移表現"],
     technologies: ["Unity", "Shader Graph"],
     description:
-      "チョコ旅で使用している、チョコが形状変化するときのシェーダーをまとめた作品です。ゲーム内での見え方が分かるように、形状変化の表現を説明する動画を掲載しています。",
+      "チョコが固体状態、液体状態、ムース状態を滑らかに変化するためにShader Graphでマテリアルを作成して、変数をスクリプトで操作しています。",
     categories: ["models"],
     thumbnailImage: "assets/thumbnails/choco-tabi-shader-thumbnail.png",
-    thumbnailAlt: "チョコ旅 シェーダー のサムネイル",
+    thumbnailAlt: "チョコ旅 状態遷移の表現 のサムネイル",
     playUrl: "",
     playLabel: "Play on Unityroom",
     playPlatform: "Unityroom",
@@ -226,9 +226,9 @@ const projects = [
     detailVideos: [
       {
         src: "assets/details/choco-tabi-shader.mp4",
-        title: "チョコ旅 シェーダー動画",
+        title: "チョコ旅 状態遷移の表現 動画",
         poster: "assets/thumbnails/choco-tabi-shader-thumbnail.png",
-        caption: "チョコの形状変化シェーダー"
+        caption: "チョコの状態遷移表現"
       }
     ],
     showPhase: false,
